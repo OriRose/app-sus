@@ -13,6 +13,7 @@ export default {
             <button title="todo list" class="fa fa-list-ul" @click="changeCmp('noteTodos')"></button>
             <button title="image" class="fa fa-image" @click="changeCmp('noteImg')"></button>
         </div>
+        <!-- TODO: FORM -->
         <input v-if="cmp.type==='noteTxt'" type="text" placeholder="what's on your'e mind?" v-model="cmp.info.txt">
         <input v-if="cmp.type==='noteTodos'" type="text" placeholder="what's your'e todos?" v-model="todo">
         <button title="add todo" class="fa fa-plus" v-if="cmp.type==='noteTodos'" @click="addTodo"></button>

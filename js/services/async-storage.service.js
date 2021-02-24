@@ -5,7 +5,9 @@ export const storageService = {
     post,
     put,
     remove,
-    postMany
+    postMany,
+    getIdx,
+    saveAll
 }
 
 function query(entityType) {
@@ -18,6 +20,11 @@ function get(entityType, entityId) {
         .then(entities => entities.find(entity => entity.id === entityId))
 }
 
+function getIdx(entityType, entityId) {
+    return query(entityType)
+        .then(entities => entities.findIndex(entity => entity.id === entityId))
+}
+
 function post(entityType, newEntity) {
     newEntity.id = _makeId()
     return query(entityType)
@@ -26,6 +33,10 @@ function post(entityType, newEntity) {
             _save(entityType, entities)
             return newEntity;
         })
+    }
+    
+    function saveAll(entityType, entities){
+        return Promise.resolve(_save(entityType, entities))
 }
 
 function postMany(entityType, newEntities) {

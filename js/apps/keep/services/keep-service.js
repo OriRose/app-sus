@@ -5,6 +5,8 @@ export const keepService={
     remove,
     save,
     getById,
+    getIdxById,
+    saveNotes
 }
 
 function query(){
@@ -23,6 +25,15 @@ function save(note) {
     }
 }
 
+function saveNotes(notes){
+    console.log('notes:', notes)
+    return storageService.saveAll('notes',notes)
+}
+
 function getById(id) {
     return storageService.get('notes', id);
+}
+
+function getIdxById(id) {
+    return storageService.getIdx('notes', id);
 }

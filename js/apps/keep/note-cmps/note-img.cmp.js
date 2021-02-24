@@ -2,7 +2,9 @@ export default {
     template: `
           <section :style="{backgroundColor:color}">
               <img :src="info.url">
+              <!-- TODO: NOTE ACTION NAV TO COMPONENT -->
               <nav>
+                  <!-- TODO: PIN -->
                   <button title="pin" @click="pin" class="fas fa-thumbtack"></button>
                   <button title="change color" @click="isChangeColor=!isChangeColor" class="fas fa-palette">
                       <nav v-if="isChangeColor">

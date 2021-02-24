@@ -50,11 +50,11 @@ export default {
         edit(id,val) {
             console.log('val:', val)
             keepService.getById(id)
-                .then(res => {
+                .then(note => {
                     console.log(typeof(val));
-                    if(typeof(val)==='string') res.info.txt=val;
-                    else res.info.todos[val.idx] = val.txt;
-                    keepService.save(res)
+                    if(typeof(val)==='string') note.info.txt=val;
+                    else note.info.todos[val.idx] = val.txt;
+                    keepService.save(note)
                         .then(() => this.getNotes());
                 })
         },
@@ -63,13 +63,20 @@ export default {
                 .then(() => this.getNotes());
         },
         pin(id) {
-            console.log('id:', id)
+            keepService.getIdxById(id)
+                .then(noteIdx => {
+                    const note=this.notes.splice(noteIdx,1)[0];
+                    this.notes.unshift(note);
+                    keepService.saveNotes(this.notes)
+                        .then(() => this.getNotes());
+                })
+
         },
         changeColor(id, color) {
             keepService.getById(id)
-                .then(res => {
-                    res.color = color;
-                    keepService.save(res)
+                .then(note => {
+                    note.color = color;
+                    keepService.save(note)
                         .then(() => this.getNotes());
                 })
         }
