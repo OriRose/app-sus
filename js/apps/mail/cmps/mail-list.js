@@ -16,10 +16,10 @@ export default {
                     </li>
                     <li @click="displayMail(mail.id)">
                         {{mail.subject}}
-                    </li @click="displayMail(mail.id)">
+                    </li>
                     <li @click="displayMail(mail.id)">
                         {{mail.timestamp}}
-                    </li @click="displayMail(mail.id)">
+                    </li>
                     <li>
                     <button @click="remove(mail.id)">X</button>
                     </li>
@@ -51,7 +51,4 @@ export default {
             else this.displayedMailIdx = mailId
         }
     }
-    // mounted() {
-    //     console.log(this.mails)
-    // }
 }
