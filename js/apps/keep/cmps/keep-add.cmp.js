@@ -1,23 +1,29 @@
 export default {
     template: `
     <section>
-        <select v-model="cmp.type" @change="changeCmp">
+        <h4>Which note would you like to add?</h4>
+        <!-- <select v-model="cmp.type" @change="changeCmp">
             <option value="noteTxt">Text Note</option>
             <option value="noteTodos">Todos Note</option>
             <option value="noteImg">Img Note</option>
             <option value="noteVideo">Video Note</option>
-        </select>
+        </select> -->
+        <div class="note-type-btn">
+            <button title="reminder" class="fa fa-ellipsis-h" @click="changeCmp('noteTxt')"></button>
+            <button title="todo list" class="fa fa-list-ul" @click="changeCmp('noteTodos')"></button>
+            <button title="image" class="fa fa-image" @click="changeCmp('noteImg')"></button>
+        </div>
         <input v-if="cmp.type==='noteTxt'" type="text" placeholder="what's on your'e mind?" v-model="cmp.info.txt">
         <input v-if="cmp.type==='noteTodos'" type="text" placeholder="what's your'e todos?" v-model="todo">
-        <button v-if="cmp.type==='noteTodos'" @click="addTodo">ADDtodo</button>
-        <input v-if="cmp.type==='noteImg'" type="file" @change="ImgInput" />
-        <button v-if="cmp.type" @click="saveNote">ADD note</button>
+        <button title="add todo" class="fa fa-plus" v-if="cmp.type==='noteTodos'" @click="addTodo"></button>
+        <input  v-if="cmp.type==='noteImg'" type="file" @change="ImgInput" />
+        <button title="save" class="fa fa-save" v-if="cmp.type" @click="saveNote"></button>
     </section>
     `,
     data() {
         return {
             cmp: {
-                type: null,
+                type:'noteTxt',
                 info: {},
                 color:'#ffffff'
             },
@@ -25,7 +31,8 @@ export default {
         }
     },
     methods: {
-        changeCmp() {
+        changeCmp(type) {
+            this.cmp.type=type;
             this.cmp.info = {}
             if (this.cmp.type === 'noteTxt') this.cmp.info.txt = null;
             if (this.cmp.type === 'noteTodos') this.cmp.info.todos = [];

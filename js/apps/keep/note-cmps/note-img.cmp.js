@@ -3,8 +3,8 @@ export default {
           <section :style="{backgroundColor:color}">
               <img :src="info.url">
               <nav>
-                  <button @click="pin" class="fas fa-thumbtack"></button>
-                  <button @click="isChangeColor=!isChangeColor" class="fas fa-palette">
+                  <button title="pin" @click="pin" class="fas fa-thumbtack"></button>
+                  <button title="change color" @click="isChangeColor=!isChangeColor" class="fas fa-palette">
                       <nav v-if="isChangeColor">
                           <span @click="changeColor('red')" style="background-color:red">&nbsp;</span>
                           <span @click="changeColor('blue')" style="background-color:blue">&nbsp;</span>
@@ -12,10 +12,12 @@ export default {
                           <span @click="changeColor('brown')" style="background-color:brown">&nbsp;</span>
                           <span @click="changeColor('orange')" style="background-color:orange">&nbsp;</span>
                           <span @click="changeColor('pink')" style="background-color:pink">&nbsp;</span>
+                          <span @click="changeColor('white')" style="background-color:white">&nbsp;</span>
+                          <span @click="changeColor('black')" style="background-color:black">&nbsp;</span>
                       </nav>
                   </button>
-                  <button @click="edit" class="fas fa-edit"></button>
-                  <button @click="remove" class="fas fa-trash"></button>
+                  <!-- <button title="edit" @click="edit" class="fas fa-edit"></button> -->
+                  <button title="delete" @click="remove" class="fas fa-trash"></button>
                 </nav>
             </section>
             `,

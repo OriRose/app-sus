@@ -11,7 +11,7 @@ import noteVideo from '../note-cmps/note-video.cmp.js'
 export default {
     template: `
         <section class="main-content">
-            <keep-filter/>
+            <!-- <keep-filter/> -->
             <keep-add class="add" @save="save"/>
             <section class="notes">
                 <div v-for="cmp in notes">
@@ -47,8 +47,16 @@ export default {
             keepService.save(note)
                 .then(() => this.getNotes());
         },
-        edit(id) {
-            console.log('id:', id)
+        edit(id,val) {
+            console.log('val:', val)
+            keepService.getById(id)
+                .then(res => {
+                    console.log(typeof(val));
+                    if(typeof(val)==='string') res.info.txt=val;
+                    else res.info.todos[val.idx] = val.txt;
+                    keepService.save(res)
+                        .then(() => this.getNotes());
+                })
         },
         remove(id) {
             keepService.remove(id)

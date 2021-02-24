@@ -6,11 +6,6 @@
 @import '../cmps/notes-cmps/note-todos.css';
 @import '../cmps/notes-cmps/note-video.css';
 
-p,
-ul {
-    margin: 0;
-}
-
 .notes {
     display: flex;
     flex-wrap: wrap;
@@ -62,7 +57,7 @@ ul {
 .note .fa-palette nav {
     position: absolute;
     top: 25px;
-    left: -44px;
+    left: -77px;
     display: flex;
     width: fit-content;
     background: #808080ad;
@@ -87,8 +82,4 @@ ul {
 .note img {
     width: 100%;
     margin-bottom: 5px;
-}
-
-.add {
-    margin: 10px;
 }
