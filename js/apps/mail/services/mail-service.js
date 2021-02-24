@@ -11,6 +11,8 @@ export const mailService = {
     getById
 }
 
+_createEmails()
+
 function query() {
     return storageService.query(EMAIL_KEY)
 }
@@ -35,24 +37,28 @@ function _createEmails() {
     let mails = utilService.loadFromStorage(EMAIL_KEY)
     if (!mails || !mails.length) {
         mails = []
-
-        //Todo: Put some demo data here using _createMail
-
+        //Todo: make better demo data
+        mails.push(_createMail('Puki','pukiMcPuck@bouncy.mail','hi!','Hello',0,'inbox',false))
+        mails.push(_createMail('Shuki','shukiMcShocko@jmail.com','Greetings, human!','Welcome to universe',0,'inbox',false))
+        mails.push(_createMail('Muki','muki@amazon.mail.org','You made 153485$ this month','Revenue Report',0,'inbox',false))
+        mails.push(_createMail('Goliath Bank','noreply@goliathBank.org','Your stocks portfolio was updated.','Stocks Portfolio',0,'inbox',false))
+        mails.push(_createMail('Spongebob','spongebob@oceanicmail.com','Your order of 1 krabby patty is on its way','Krabby Patty Order',0,'inbox',false))
         utilService.saveToStorage(EMAIL_KEY, mails)
     }
     return mails;
 }
 
 function getEmptyMail() {
-    return { id: '', sender: { name: '', address: '' }, content: '', topic: '', timestamp: Date.now(), folder: '', isStarred: false }
+    return { id: '', sender: { name: '', address: '' }, content: '', subject: '', timestamp: Date.now(), folder: '', isStarred: false }
 }
 
-function _createMail(sender, content, topic, timestamp, folder, isStarred) {
+function _createMail(senderName, senderAddress, content, subject, timestamp, folder, isStarred) {
     const mail = getEmptyMail();
     mail.id = utilService.makeId();
-    mail.sender = sender
+    mail.sender.name = senderName
+    mail.sender.address = senderAddress
     mail.content = content
-    mail.topic = topic
+    mail.subject = subject
     mail.timestamp = timestamp
     mail.folder = folder
     mail.isStarred = isStarred
