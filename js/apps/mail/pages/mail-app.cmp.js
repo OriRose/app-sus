@@ -9,7 +9,7 @@ export default {
         <button>+ Compose</button>
         <mail-search @searched="getSearch"></mail-search>
         <mail-filter></mail-filter>
-        <mail-list :mails="mailsToShow" @remove="removeMail"></mail-list>
+        <mail-list :mails="mailsToShow" @remove="removeMail" @starred="saveMail"></mail-list>
     </section>
     `,
     data() {
@@ -30,6 +30,9 @@ export default {
         },
         getSearch(searchString) {
             this.searchString = searchString
+        },
+        saveMail(mail){
+            mailService.save(mail)
         }
     },
     computed: {

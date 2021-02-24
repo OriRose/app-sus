@@ -1,4 +1,4 @@
-import {mailService} from '../services/mail-service.js'
+// import {mailService} from '../services/mail-service.js'
 
 export default {
     props: ['mails'],
@@ -34,7 +34,7 @@ export default {
         },
         toggleStar(mail){
             mail.isStarred = !mail.isStarred
-            mailService.save(mail)
+            this.$emit('starred',mail)
         }
     }
     // mounted() {
