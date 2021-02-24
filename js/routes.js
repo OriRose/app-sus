@@ -1,4 +1,8 @@
-// import 
+import homePage from './pages/home-page.cmp.js'
+import bookApp from './apps/books/pages/book-app.cmp.js'
+import keepApp from './apps/keep/pages/keep-app.cmp.js'
+import mailApp from './apps/mail/pages/mail-app.cmp.js'
+import aboutPage from './pages/about-page.cmp.js'
 
 const routes = [
     {
