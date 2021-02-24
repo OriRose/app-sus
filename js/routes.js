@@ -6,23 +6,23 @@ import aboutPage from './pages/about-page.cmp.js'
 
 const routes = [
     {
-        path:'/',
+        path: '/',
         component: homePage
     },
     {
-        path:'/book',
+        path: '/book',
         component: bookApp
     },
     {
-        path:'/keep',
+        path: '/keep',
         component: keepApp
     },
     {
-        path:'/mail',
+        path: '/mail',
         component: mailApp
     },
     {
-        path:'/about',
+        path: '/about',
         component: aboutPage
     }
 ]
