@@ -1,18 +1,18 @@
 import { myRouter } from './routes.js'
+import appHeader from './cmps/app-header.cmp'
 
 const options = {
     el: '#app',
     router: myRouter,
     template: `
-        <section>
-            <h1>main</h1>
-        </section>
+        <app-header>
     `,
     data() {
         return {
         }
     },
     components: {
+        appHeader
     }
 }
 
