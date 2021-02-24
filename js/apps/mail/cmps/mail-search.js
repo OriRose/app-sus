@@ -15,7 +15,6 @@ export default {
         }
     },
     mounted(){
-        console.log('mounted');
         this.$refs.searchInput.focus()
     }
 }
