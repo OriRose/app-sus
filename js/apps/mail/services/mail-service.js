@@ -44,14 +44,17 @@ function _createEmails() {
 }
 
 function getEmptyMail() {
-    return { id: '', sender: { name: '', address: '' }, content: '', topic: '', timestamp: Date.now() }
+    return { id: '', sender: { name: '', address: '' }, content: '', topic: '', timestamp: Date.now(), folder: '', isStarred: false }
 }
 
-function _createMail(sender, content, topic, timestamp) {
+function _createMail(sender, content, topic, timestamp, folder, isStarred) {
     const mail = getEmptyMail();
     mail.id = utilService.makeId();
     mail.sender = sender
     mail.content = content
+    mail.topic = topic
     mail.timestamp = timestamp
+    mail.folder = folder
+    mail.isStarred = isStarred
     return mail
 }
