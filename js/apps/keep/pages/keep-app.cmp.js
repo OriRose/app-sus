@@ -14,9 +14,11 @@ export default {
             <h1>keep page</h1>
             <!-- <keep-filter/> -->
             <keep-add/>
-            <div v-for="cmp in notes">
-                <component :is="cmp.type" :info="cmp.info"></component>
-            </div>
+            <section class="notes">
+                <div v-for="cmp in notes">
+                    <component :is="cmp.type" :info="cmp.info" class="note"></component>
+                </div>
+            </section>
             <!-- <router-link to="/add" style="color:red">Add A Book</router-link> -->
             <!-- <book-details v-else :book="selectedBook" @close="selectedBook = null"/> -->
         </section>
