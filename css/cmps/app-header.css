@@ -1,0 +1,31 @@
+.header{
+    padding: 20px;
+    background-color: #edc7b7;
+    margin-bottom: 10px;
+}
+
+.header .main-content{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+h1{
+    font-size: 30px;
+    margin: 0;
+}
+nav{
+    width: 250px;
+    display: flex;
+    justify-content: space-between;
+}
+nav a{
+    text-decoration: none;
+    color:black;
+    transition: all .6s;
+}
+nav a:hover{
+    text-decoration: underline;
+    opacity: .6;
+    transform: scale(1.3);
+}

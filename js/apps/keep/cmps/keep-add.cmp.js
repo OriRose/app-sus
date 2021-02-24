@@ -1,8 +1,7 @@
-import { keepService } from '../services/keep-service.js'
 export default {
     template: `
     <section>
-        <select name="" id="" v-model="cmp.type" @change="changeCmp">
+        <select v-model="cmp.type" @change="changeCmp">
             <option value="noteTxt">Text Note</option>
             <option value="noteTodos">Todos Note</option>
             <option value="noteImg">Img Note</option>
@@ -12,7 +11,7 @@ export default {
         <input v-if="cmp.type==='noteTodos'" type="text" placeholder="what's your'e todos?" v-model="todo">
         <button v-if="cmp.type==='noteTodos'" @click="addTodo">ADDtodo</button>
         <input v-if="cmp.type==='noteImg'" type="file" @change="ImgInput" />
-        <button @click="saveNote">ADD note</button>
+        <button v-if="cmp.type" @click="saveNote">ADD note</button>
     </section>
     `,
     data() {
@@ -32,14 +31,11 @@ export default {
             if (this.cmp.type === 'noteImg') this.cmp.info.url = null;
         },
         saveNote() {
-            console.log(this.cmp);
-            keepService.save(this.cmp)
-                .then(() => {
-                    this.cmp = {
-                        type: null,
-                        info: {}
-                    }
-                })
+            this.$emit('save', this.cmp);
+            this.cmp = {
+                type: null,
+                info: {}
+            }
         },
         addTodo() {
             this.cmp.info.todos.push(this.todo);
@@ -52,7 +48,7 @@ export default {
         loadImageFromInput(ev) {
             var reader = new FileReader()
 
-            reader.onload = (event) =>{
+            reader.onload = (event) => {
                 // var img = new Image()
                 // img.onload = onImageReady.bind(null, img)
                 this.cmp.info.url = event.target.result

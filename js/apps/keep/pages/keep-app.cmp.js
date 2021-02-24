@@ -1,4 +1,4 @@
-import {keepService} from '../services/keep-service.js'
+import { keepService } from '../services/keep-service.js'
 import keepFilter from '../cmps/keep-filter.cmp.js'
 import keepAdd from '../cmps/keep-add.cmp.js'
 import keepList from '../cmps/keep-list.cmp.js'
@@ -10,17 +10,14 @@ import noteVideo from '../note-cmps/note-video.cmp.js'
 
 export default {
     template: `
-        <section>
-            <h1>keep page</h1>
-            <!-- <keep-filter/> -->
-            <keep-add/>
+        <section class="main-content">
+            <keep-filter/>
+            <keep-add class="add" @save="save"/>
             <section class="notes">
                 <div v-for="cmp in notes">
-                    <component :is="cmp.type" :info="cmp.info" class="note"></component>
+                    <component :is="cmp.type" :info="cmp.info" :id="cmp.id" class="note" @edit="edit" @remove="remove"></component>
                 </div>
             </section>
-            <!-- <router-link to="/add" style="color:red">Add A Book</router-link> -->
-            <!-- <book-details v-else :book="selectedBook" @close="selectedBook = null"/> -->
         </section>
     `,
     data() {
@@ -28,12 +25,28 @@ export default {
             notes: null
         }
     },
+    methods: {
+        getNotes() {
+            keepService.query()
+                .then(notes => {
+                    console.log('notes:', notes)
+                    this.notes = notes
+                });
+        },
+        save(note) {
+            keepService.save(note)
+                .then(() => this.getNotes());
+        },
+        edit(id) {
+
+        },
+        remove(id) {
+            keepService.remove(id)
+                .then(() => this.getNotes());
+        }
+    },
     created() {
-        keepService.query()
-        .then(notes=>{
-            console.log('notes:', notes)
-            this.notes=notes
-        });
+        this.getNotes();
     },
     components: {
         keepFilter,

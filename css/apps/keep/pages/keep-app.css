@@ -1,0 +1,36 @@
+@import '../cmps/keep-add.css';
+@import '../cmps/keep-filter.css';
+@import '../cmps/keep-list.css';
+@import '../cmps/notes-cmps/note-img.css';
+@import '../cmps/notes-cmps/note-txt.css';
+@import '../cmps/notes-cmps/note-todos.css';
+@import '../cmps/notes-cmps/note-video.css';
+p,ul{
+    margin: 0;
+}
+.notes {
+    display: flex;
+    flex-wrap: wrap;
+    gap:10px;
+}
+
+.note {
+    border: 1px solid black;
+    min-width: 200px;
+    min-height: 100px;
+    padding: 10px;
+    max-width: 300px;
+    max-height: 200px;
+    transition: all.4s;
+}
+.note:hover{
+    transform: scale(1.025);
+
+}
+.note img{
+    width: 100%;
+}
+
+.add{
+    margin:10px;
+}

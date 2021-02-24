@@ -1,6 +1,8 @@
 export default {
-    template:`<section>
-        <h1>Logo</h1>
+    template:`
+    <section class="header">
+      <section class="main-content">
+        <h1>Appsus</h1>
         <nav>
           <router-link to="/" >Home</router-link>
           <router-link to="/mail" >Mail</router-link>
@@ -8,6 +10,7 @@ export default {
           <router-link to="/keep" >Keep</router-link>
           <router-link to="/about" >About</router-link>
         </nav>
+      </section>
 </section>
     `
 }
