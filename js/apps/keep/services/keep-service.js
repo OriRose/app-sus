@@ -4,7 +4,7 @@ export const keepService={
     query,
     remove,
     save,
-    getById
+    getById,
 }
 
 function query(){

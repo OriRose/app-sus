@@ -10,21 +10,21 @@
     align-items: center;
 
 }
-h1{
+.header h1{
     font-size: 30px;
     margin: 0;
 }
-nav{
+.header nav{
     width: 250px;
     display: flex;
     justify-content: space-between;
 }
-nav a{
+.header nav a{
     text-decoration: none;
     color:black;
     transition: all .6s;
 }
-nav a:hover{
+.header nav a:hover{
     text-decoration: underline;
     opacity: .6;
     transform: scale(1.3);

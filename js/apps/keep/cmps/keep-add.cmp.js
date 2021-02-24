@@ -18,7 +18,8 @@ export default {
         return {
             cmp: {
                 type: null,
-                info: {}
+                info: {},
+                color:'#ffffff'
             },
             todo: null
         }
@@ -34,7 +35,8 @@ export default {
             this.$emit('save', this.cmp);
             this.cmp = {
                 type: null,
-                info: {}
+                info: {},
+                color:'#ffffff'
             }
         },
         addTodo() {
@@ -44,16 +46,11 @@ export default {
         ImgInput(ev) {
             this.loadImageFromInput(ev)
         },
-
         loadImageFromInput(ev) {
             var reader = new FileReader()
-
             reader.onload = (event) => {
-                // var img = new Image()
-                // img.onload = onImageReady.bind(null, img)
                 this.cmp.info.url = event.target.result
                 console.log(this.cmp);
-                // console.log(img.src);
             }
             reader.readAsDataURL(ev.target.files[0])
         }

@@ -15,7 +15,17 @@ export default {
             <keep-add class="add" @save="save"/>
             <section class="notes">
                 <div v-for="cmp in notes">
-                    <component :is="cmp.type" :info="cmp.info" :id="cmp.id" class="note" @edit="edit" @remove="remove"></component>
+                    <component
+                     :is="cmp.type"
+                     :info="cmp.info"
+                     :color="cmp.color"
+                     :id="cmp.id" 
+                     class="note" 
+                     @edit="edit" 
+                     @remove="remove"
+                     @pin="pin"
+                     @changeColor="changeColor"
+                     ></component>
                 </div>
             </section>
         </section>
@@ -38,11 +48,22 @@ export default {
                 .then(() => this.getNotes());
         },
         edit(id) {
-
+            console.log('id:', id)
         },
         remove(id) {
             keepService.remove(id)
                 .then(() => this.getNotes());
+        },
+        pin(id) {
+            console.log('id:', id)
+        },
+        changeColor(id, color) {
+            keepService.getById(id)
+                .then(res => {
+                    res.color = color;
+                    keepService.save(res)
+                        .then(() => this.getNotes());
+                })
         }
     },
     created() {

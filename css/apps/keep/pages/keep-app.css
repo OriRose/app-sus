@@ -5,32 +5,90 @@
 @import '../cmps/notes-cmps/note-txt.css';
 @import '../cmps/notes-cmps/note-todos.css';
 @import '../cmps/notes-cmps/note-video.css';
-p,ul{
+
+p,
+ul {
     margin: 0;
 }
+
 .notes {
     display: flex;
     flex-wrap: wrap;
-    gap:10px;
+    gap: 10px;
 }
 
 .note {
-    border: 1px solid black;
+    border: 2px solid #888;
+    border-radius: 5px;
     min-width: 200px;
     min-height: 100px;
     padding: 10px;
     max-width: 300px;
-    max-height: 200px;
+    max-height: fit-content;
     transition: all.4s;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 1px 2px 16px 5px rgba(0, 0, 0, 0.79);
 }
-.note:hover{
+
+.note :first-child {
+    flex: 1;
+}
+
+.note:hover {
     transform: scale(1.025);
 
 }
-.note img{
-    width: 100%;
+
+.note button {
+    background: none;
+    height: 30px;
+    width: 30px;
+    border: none;
+    outline: none;
+    transition: all .5s;
 }
 
-.add{
-    margin:10px;
+.note button:hover {
+    border-radius: 100%;
+    background-color: rgba(128, 128, 128, 0.521);
+
+}
+
+.note .fa-palette {
+    position: relative;
+}
+
+.note .fa-palette nav {
+    position: absolute;
+    top: 25px;
+    left: -44px;
+    display: flex;
+    width: fit-content;
+    background: #808080ad;
+    padding: 5px;
+    gap: 2px;
+    border-radius: 25px;
+}
+
+.note .fa-palette span {
+    cursor: pointer;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    transition: all .4s;
+}
+
+.note .fa-palette span:hover {
+    opacity: .5;
+}
+
+.note img {
+    width: 100%;
+    margin-bottom: 5px;
+}
+
+.add {
+    margin: 10px;
 }
