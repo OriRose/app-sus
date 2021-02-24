@@ -14,7 +14,9 @@ export default {
             <h1>keep page</h1>
             <!-- <keep-filter/> -->
             <keep-add/>
-            <div v-for="cmp in notes"></div>
+            <div v-for="cmp in notes">
+                <component :is="cmp.type" :info="cmp.info"></component>
+            </div>
             <!-- <router-link to="/add" style="color:red">Add A Book</router-link> -->
             <!-- <book-details v-else :book="selectedBook" @close="selectedBook = null"/> -->
         </section>
@@ -26,7 +28,10 @@ export default {
     },
     created() {
         keepService.query()
-        .then(notes=>this.notes=notes);
+        .then(notes=>{
+            console.log('notes:', notes)
+            this.notes=notes
+        });
     },
     components: {
         keepFilter,
