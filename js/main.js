@@ -6,8 +6,8 @@ const options = {
     router: myRouter,
     template: `
     <section>
-        <!-- <app-header/> -->
-        <!-- <router-view/> -->
+        <app-header/>
+        <router-view/>
     </section>
     `,
     data() {
