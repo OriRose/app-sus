@@ -49,7 +49,7 @@ function _createEmails() {
 }
 
 function getEmptyMail() {
-    return { id: '', sender: { name: '', address: '' }, content: '', subject: '', timestamp: Date.now(), folder: '', isStarred: false }
+    return { id: '', sender: { name: '', address: '' }, content: '', subject: '', timestamp: Date.now(), folder: '', isStarred: false, wasRead: false }
 }
 
 function _createMail(senderName, senderAddress, content, subject, timestamp, folder, isStarred) {

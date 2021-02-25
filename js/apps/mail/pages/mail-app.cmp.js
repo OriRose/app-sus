@@ -1,6 +1,6 @@
-import mailList from '../cmps/mail-list.js'
-import mailFilter from '../cmps/mail-filter.js'
-import mailSearch from '../cmps/mail-search.js'
+import mailList from '../cmps/mail-list.cmp.js'
+import mailFilter from '../cmps/mail-filter.cmp.js'
+import mailSearch from '../cmps/mail-search.cmp.js'
 import { mailService } from '../services/mail-service.js'
 
 export default {
