@@ -60,11 +60,5 @@ export default {
         getTextColor() {
             return (this.color === 'black') ? 'color:white' : ``;
         }
-    },
-    created(){
-        console.log(this.info);
-        console.log(this.color);
-        console.log(this.id);
-        console.log(this.isPinned);
     }
 }
