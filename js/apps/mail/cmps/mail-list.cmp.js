@@ -10,7 +10,7 @@ export default {
                 <mail-preview ref="mailPreview" :mail="mail" @remove="remove" @display="displayMail" @starred="toggleStar">
                     
                 </mail-preview>
-                <mail-details :mail="mail" v-if="(mail.id===displayedMailIdx)">
+                <mail-details :mail="mail" v-if="(mail.id===displayedMailIdx)" @wasRead="wasRead">
                     
                 </mail-details>
             </li>
@@ -32,6 +32,9 @@ export default {
         displayMail(mailId) {
             if(mailId === this.displayedMailIdx) this.displayedMailIdx = null
             else this.displayedMailIdx = mailId
+        },
+        wasRead(mail) {
+            this.$emit('wasRead',mail)
         }
     },
     components: {

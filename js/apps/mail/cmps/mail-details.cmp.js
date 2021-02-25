@@ -8,5 +8,6 @@ export default {
     `,
     created() {
         this.mail.wasRead = true
+        this.$emit('wasRead',this.mail)
     }
 }
