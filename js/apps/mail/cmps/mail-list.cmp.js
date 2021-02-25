@@ -7,7 +7,7 @@ export default {
     <section>
         <ul>
             <li v-for="mail in mails" :key="mail.id">
-                <mail-preview :mail="mail" @remove="remove" @display="displayMail" @starred="toggleStar">
+                <mail-preview ref="mailPreview" :mail="mail" @remove="remove" @display="displayMail" @starred="toggleStar">
                     
                 </mail-preview>
                 <mail-details :mail="mail" v-if="(mail.id===displayedMailIdx)">
