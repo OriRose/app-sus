@@ -11,7 +11,7 @@ export default {
         <mail-search @searched="getSearch"></mail-search>
         <mail-filter></mail-filter>
         <mail-list :mails="mailsToShow" @remove="removeMail" @starred="saveMail" @wasRead="saveMail"></mail-list>
-        <mail-compose @sent="loadMails"></mail-compose>
+        <mail-compose @saveNewMail="saveMail"></mail-compose>
     </section>
     `,
     data() {
@@ -25,6 +25,7 @@ export default {
         loadMails() {
             mailService.query()
                 .then(mails => this.mails = mails)
+                .then(console.log(this.mails))
         },
         removeMail(mailId) {
             mailService.remove(mailId)
@@ -36,6 +37,7 @@ export default {
         saveMail(mail){
             mailService.save(mail)
                 .then(console.log('saved!'))
+                .then(this.loadMails)
         }
     },
     computed: {
@@ -53,7 +55,7 @@ export default {
             return mailsToShow
         }
     },
-    created() {
+    mounted() {
         this.loadMails()
     },
     components:

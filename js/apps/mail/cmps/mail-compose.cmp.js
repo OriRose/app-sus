@@ -28,9 +28,8 @@ export default {
             newEmail.subject = (this.subject==='') ? '(no subject)' : this.subject
             newEmail.content = this.content
             newEmail.folder = (this.recepient==='admin@appsus.org') ? 'outbox' : 'inbox'
-            mailService.save(newEmail)
-                .then(eventBus.$emit('show-msg',{txt:'Mail Sent!'}))
-                .then(this.$emit('sent'))
+            this.$emit('saveNewMail',newEmail)
+            eventBus.$emit('show-msg',{txt:'Mail sent!'})
         }
     }
 }
