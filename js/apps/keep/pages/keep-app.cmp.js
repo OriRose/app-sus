@@ -19,11 +19,13 @@ export default {
                      :is="cmp.type"
                      :info="cmp.info"
                      :color="cmp.color"
+                     :isPinned="cmp.isPinned"
                      :id="cmp.id" 
                      class="note" 
                      @edit="edit" 
                      @remove="remove"
                      @pin="pin"
+                     @unpin="unpin"
                      @changeColor="changeColor"
                      ></component>
                 </div>
@@ -47,12 +49,12 @@ export default {
             keepService.save(note)
                 .then(() => this.getNotes());
         },
-        edit(id,val) {
+        edit(id, val) {
             console.log('val:', val)
             keepService.getById(id)
                 .then(note => {
-                    console.log(typeof(val));
-                    if(typeof(val)==='string') note.info.txt=val;
+                    console.log(typeof (val));
+                    if (typeof (val) === 'string') note.info.txt = val;
                     else note.info.todos[val.idx] = val.txt;
                     keepService.save(note)
                         .then(() => this.getNotes());
@@ -65,10 +67,28 @@ export default {
         pin(id) {
             keepService.getIdxById(id)
                 .then(noteIdx => {
-                    const note=this.notes.splice(noteIdx,1)[0];
+                    const note = this.notes.splice(noteIdx, 1)[0];
+                    note.isPinned=true;
                     this.notes.unshift(note);
                     keepService.saveNotes(this.notes)
-                        .then(() => this.getNotes());
+                        .then(() => {
+                            keepService.save(note)
+                                .then(() => this.getNotes());
+                        })
+                })
+
+        },
+        unpin(id) {
+            keepService.getIdxById(id)
+                .then(noteIdx => {
+                    const note = this.notes.splice(noteIdx, 1)[0];
+                    note.isPinned=false;
+                    this.notes.push(note);
+                    keepService.saveNotes(this.notes)
+                        .then(() => {
+                            keepService.save(note)
+                                .then(() => this.getNotes());
+                        })
                 })
 
         },

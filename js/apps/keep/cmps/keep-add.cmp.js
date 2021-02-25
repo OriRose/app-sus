@@ -26,7 +26,8 @@ export default {
             cmp: {
                 type:'noteTxt',
                 info: {},
-                color:'#ffffff'
+                color:'#ffffff',
+                isPinned:false
             },
             todo: null
         }
@@ -44,7 +45,8 @@ export default {
             this.cmp = {
                 type: null,
                 info: {},
-                color:'#ffffff'
+                color:'#ffffff',
+                isPinned:false
             }
         },
         addTodo() {
