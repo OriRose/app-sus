@@ -7,7 +7,8 @@ import keepList from '../cmps/keep-list.cmp.js'
 import noteImg from '../note-cmps/note-img.cmp.js'
 import noteTxt from '../note-cmps/note-txt.cmp.js'
 import noteTodos from '../note-cmps/note-todos.cmp.js'
-import noteVideo from '../note-cmps/note-video.cmp.js'
+import noteVid from '../note-cmps/note-video.cmp.js'
+import noteAud from '../note-cmps/note-audio.cmp.js'
 
 export default {
     template: `
@@ -155,6 +156,7 @@ export default {
         noteImg,
         noteTxt,
         noteTodos,
-        noteVideo
+        noteVid,
+        noteAud,
     }
 }

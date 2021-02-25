@@ -3,7 +3,7 @@ export default{
     <section class="about">
         <h1>About Us</h1>
           <!-- first -->
-      <section class="bg-secondary" id="me">
+      <section class="bg-secondary main-content" id="me">
         <div class="row">
           <div class="col-sm-4">
             <div class="team-member">
@@ -35,12 +35,17 @@ export default{
             </div>
           </div>
           <div class="col-sm-8 flex-align-center">
-            <p class="large about-description"></p>
+            <p class="large about-description">
+              I'm a junior Web Developer on the rise.<br/>
+              I acquired my skills at coding academy and learnd the art of JS,HTML5 and CSS using VueJs framework.<br/>
+              Take a glance of my capabilities at this website!<br/>
+              You are welcome to enter my Github profile and look at my other projects.
+            </p>
           </div>
         </div>
       </section>
           <!-- second -->
-      <section class="bg-secondary" id="me">
+      <section class=" main-content" id="me">
         <div class="row flex-row-reverse">
           <div class="col-sm-4">
             <div class="team-member">

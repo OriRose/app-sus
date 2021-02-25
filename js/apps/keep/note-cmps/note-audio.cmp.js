@@ -1,15 +1,17 @@
 export default {
     template: `
           <section :style="getStyle">
-              <span :class="{fa:isPinned, 'fa-paperclip':isPinned}"></span>
+          <span :class="{fa:isPinned, 'fa-paperclip':isPinned}"></span>
               <p v-if="!isEdit" @click="startEdit">{{info.txt}}</p>
               <input ref="editInput" v-show="isEdit" type="text" v-model="txt">
-              <img :src="info.url">
-              <!-- TODO: NOTE ACTION NAV TO COMPONENT -->
-              <nav>
-                  <button :style="getTextColor" v-if="!isPinned" title="pin" @click="pin" class="fas fa-thumbtack"></button>
-                  <button :style="getTextColor" v-if="isPinned" :class="{rotate:isPinned}" title="un pin" @click="unpin" class="fas fa-thumbtack"></button>
-                  <button :style="getTextColor" title="change color" @click="isChangeColor=!isChangeColor" class="fas fa-palette">
+              <audio controls
+                :src="info.url"
+                style="width:100%">
+              </audio>
+            <nav>
+                  <button v-if="!isPinned" title="pin" @click="pin" class="fas fa-thumbtack"></button>
+                  <button v-if="isPinned" :class="{rotate:isPinned}" title="un pin" @click="unpin" class="fas fa-thumbtack"></button>
+                  <button @click="isChangeColor=!isChangeColor" class="fas fa-palette">
                       <nav v-if="isChangeColor">
                           <span @click="changeColor('red')" style="background-color:red">&nbsp;</span>
                           <span @click="changeColor('blue')" style="background-color:blue">&nbsp;</span>
@@ -38,21 +40,21 @@ export default {
     methods: {
         edit() {
             this.$emit('edit', this.id, this.txt)
-            setTimeout(()=>{
+            setTimeout(() => {
                 this.isEdit = !this.isEdit;
-            },0);
+            }, 0);
         },
         remove() {
-            this.$emit('remove', this.id);
+            this.$emit('remove', this.id)
         },
         pin() {
-            this.$emit('pin', this.id);
+            this.$emit('pin', this.id)
         },
         unpin() {
-            this.$emit('unpin', this.id);
+            this.$emit('unpin', this.id)
         },
         changeColor(color) {
-            this.$emit('changeColor', this.id, color);
+            this.$emit('changeColor', this.id, color)
         },
         startEdit() {
             this.isEdit = !this.isEdit;
@@ -60,13 +62,19 @@ export default {
                 this.$refs.editInput.focus();
             }, 0);
         }
+
     },
     computed: {
         getStyle() {
-            return (this.color === 'black') ? 'background-color:black;color:white' : `background-color:${this.color}`;
+            return (this.color === 'black') ? 'background-color:black;color:white' : `background-color:${this.color}`
         },
         getTextColor() {
             return (this.color === 'black') ? 'color:white' : ``;
+        },
+        getUrl() {
+            // return `<%Reponse.Write(${this.info.url});%>`
+            // // var url = this.info.url.replace('watch?v=', 'embed/');
+            // // return url;
         }
     }
 };
