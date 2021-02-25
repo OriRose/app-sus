@@ -42,7 +42,7 @@
 
 .note:hover {
     transform: scale(1.025);
-    
+    z-index: 1;
 }
 
 .note button {

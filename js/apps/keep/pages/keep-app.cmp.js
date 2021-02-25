@@ -2,13 +2,12 @@ import { keepService } from '../services/keep-service.js'
 import { eventBus } from '../../../services/event-bus.service.js'
 import keepFilter from '../cmps/keep-filter.cmp.js'
 import keepAdd from '../cmps/keep-add.cmp.js'
-import keepList from '../cmps/keep-list.cmp.js'
 
-import noteImg from '../note-cmps/note-img.cmp.js'
-import noteTxt from '../note-cmps/note-txt.cmp.js'
-import noteTodos from '../note-cmps/note-todos.cmp.js'
-import noteVid from '../note-cmps/note-video.cmp.js'
-import noteAud from '../note-cmps/note-audio.cmp.js'
+import noteImg from '../cmps/note-cmps/note-img.cmp.js'
+import noteTxt from '../cmps/note-cmps/note-txt.cmp.js'
+import noteTodos from '../cmps/note-cmps/note-todos.cmp.js'
+import noteVid from '../cmps/note-cmps/note-video.cmp.js'
+import noteAud from '../cmps/note-cmps/note-audio.cmp.js'
 
 export default {
     template: `
@@ -148,11 +147,15 @@ export default {
     },
     created() {
         this.getNotes();
+        eventBus.$on('edit',this.edit);
+        eventBus.$on('remove',this.remove);
+        eventBus.$on('pin',this.pin);
+        eventBus.$on('unpin',this.unpin);
+        eventBus.$on('changeColor',this.changeColor);
     },
     components: {
         keepFilter,
         keepAdd,
-        keepList,
         noteImg,
         noteTxt,
         noteTodos,
