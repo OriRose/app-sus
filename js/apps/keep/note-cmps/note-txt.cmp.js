@@ -19,7 +19,8 @@ export default {
                           <span @click="changeColor('black')" style="background-color:black">&nbsp;</span>
                       </nav>
                   </button>
-                  <button title="edit" @click="startEdit" class="fas fa-edit"></button>
+                  <button :style="getTextColor" v-if="!isEdit" title="edit" @click="startEdit" class="fas fa-edit"></button>
+                  <button :style="getTextColor" v-if="isEdit" title="save" @click="edit" class="fas fa-save"></button>
                   <button title="delete" @click="remove" class="fas fa-trash"></button>
                 </nav>
             </section>
@@ -60,6 +61,9 @@ export default {
     computed:{
         getStyle(){
             return (this.color==='black')?'background-color:black;color:white':`background-color:${this.color}`
+        },
+        getTextColor() {
+            return (this.color === 'black') ? 'color:white' : ``;
         }
     }
 };
