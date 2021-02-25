@@ -2,6 +2,7 @@ import mailList from '../cmps/mail-list.cmp.js'
 import mailFilter from '../cmps/mail-filter.cmp.js'
 import mailSearch from '../cmps/mail-search.cmp.js'
 import { mailService } from '../services/mail-service.js'
+import mailCompose from '../cmps/mail-compose.cmp.js'
 
 export default {
     template: `
@@ -10,6 +11,7 @@ export default {
         <mail-search @searched="getSearch"></mail-search>
         <mail-filter></mail-filter>
         <mail-list :mails="mailsToShow" @remove="removeMail" @starred="saveMail" @wasRead="saveMail"></mail-list>
+        <mail-compose></mail-compose>
     </section>
     `,
     data() {
@@ -56,6 +58,6 @@ export default {
     },
     components:
     {
-        mailList, mailFilter, mailSearch
+        mailList, mailFilter, mailSearch, mailCompose
     }
 }
