@@ -1,4 +1,5 @@
 import mailDetails from './mail-details.js'
+import mailPreview from './mail-preview.cmp.js'
 
 export default {
     props: ['mails'],
@@ -6,24 +7,9 @@ export default {
     <section>
         <ul>
             <li v-for="mail in mails" :key="mail.id">
-                <ul>
-                    <li>
-                    <button v-if="mail.isStarred" @click="toggleStar(mail)">★</button>
-                    <button v-else @click="toggleStar(mail)">☆</button>
-                    </li>
-                    <li @click="displayMail(mail.id)">
-                        {{mail.sender.name}}
-                    </li>
-                    <li @click="displayMail(mail.id)">
-                        {{mail.subject}}
-                    </li>
-                    <li @click="displayMail(mail.id)">
-                        {{mail.timestamp}}
-                    </li>
-                    <li>
-                    <button @click="remove(mail.id)">X</button>
-                    </li>
-                </ul>
+                <mail-preview :mail="mail" @remove="remove" @display="displayMail" @starred="toggleStar">
+                    
+                </mail-preview>
                 <mail-details :mail="mail" v-if="(mail.id===displayedMailIdx)">
                     
                 </mail-details>
@@ -41,7 +27,6 @@ export default {
             this.$emit('remove', mailId)
         },
         toggleStar(mail) {
-            mail.isStarred = !mail.isStarred
             this.$emit('starred', mail)
         },
         displayMail(mailId) {
@@ -50,6 +35,6 @@ export default {
         }
     },
     components: {
-        mailDetails
+        mailDetails, mailPreview
     }
 }
