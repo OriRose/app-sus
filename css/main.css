@@ -3,6 +3,7 @@
 @import './cmps/user-msg.css'; 
 @import './basic/fonts.css'; 
 @import './basic/helpers.css'; 
+@import './pages/about.css'; 
 
 body,h1,h2,h3,h4,h5,h6,p,ul{
     margin: 0;

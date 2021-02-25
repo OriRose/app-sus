@@ -75,7 +75,6 @@ export default {
             .then(note => {
                     if(typeof (val) === 'string') note.info.txt = val;
                     else note.info.todos=val;                   
-                    console.log('val:', val) 
                     keepService.save(note)
                     .then(() => this.getNotes())
                     .then(() => this.showMsg('success'))

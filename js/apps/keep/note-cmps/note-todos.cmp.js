@@ -11,9 +11,9 @@ export default {
                     </li>
               </ul>
               <nav>                  
-                  <button v-if="!isPinned" title="pin" @click="pin" class="fas fa-thumbtack"></button>
-                  <button v-if="isPinned" :class="{rotate:isPinned}" title="un pin" @click="unpin" class="fas fa-thumbtack"></button>
-                  <button title="change color" @click="isChangeColor=!isChangeColor" class="fas fa-palette">
+                  <button :style="getTextColor" v-if="!isPinned" title="pin" @click="pin" class="fas fa-thumbtack"></button>
+                  <button :style="getTextColor" v-if="isPinned" :class="{rotate:isPinned}" title="un pin" @click="unpin" class="fas fa-thumbtack"></button>
+                  <button :style="getTextColor" title="change color" @click="isChangeColor=!isChangeColor" class="fas fa-palette">
                       <nav v-if="isChangeColor">
                           <span @click="changeColor('red')" style="background-color:red">&nbsp;</span>
                           <span @click="changeColor('blue')" style="background-color:blue">&nbsp;</span>
@@ -25,9 +25,9 @@ export default {
                           <span @click="changeColor('black')" style="background-color:black">&nbsp;</span>
                       </nav>
                   </button>
-                  <button v-if="!isEdit" title="edit" @click="startEdit" class="fas fa-edit"></button>
-                  <button v-if="isEdit" title="save" @click="edit" class="fas fa-save"></button>
-                  <button title="delete" @click="remove" class="fas fa-trash"></button>
+                  <button :style="getTextColor" v-if="!isEdit" title="edit" @click="startEdit" class="fas fa-edit"></button>
+                  <button :style="getTextColor" v-if="isEdit" title="save" @click="edit" class="fas fa-save"></button>
+                  <button :style="getTextColor" title="delete" @click="remove" class="fas fa-trash"></button>
                 </nav>
             </section>
             `,
@@ -69,6 +69,9 @@ export default {
     computed:{
         getStyle(){
             return (this.color==='black')?'background-color:black;color:white':`background-color:${this.color}`
+        },
+        getTextColor() {
+            return (this.color === 'black') ? 'color:white' : ``;
         }
     }
 };
