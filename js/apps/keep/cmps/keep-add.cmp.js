@@ -1,7 +1,7 @@
 export default {
     template: `
     <section>
-        <h4>Which note would you like to add?</h4>
+        <h6>Which note would you like to add?</h6>
         <!-- <select v-model="cmp.type" @change="changeCmp">
             <option value="noteTxt">Text Note</option>
             <option value="noteTodos">Todos Note</option>

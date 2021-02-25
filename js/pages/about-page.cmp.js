@@ -1,6 +1,6 @@
 export default{
     template:`
-    <section>
+    <section class="about">
         <h1>About Us</h1>
           <!-- first -->
       <section class="bg-secondary" id="me">
@@ -35,11 +35,7 @@ export default{
             </div>
           </div>
           <div class="col-sm-8 flex-align-center">
-            <p class="large about-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut
-              eaque, laboriosam veritatis, quos non quis ad perspiciatis,
-              totam corporis ea, alias ut unde. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut eaque,
-              laboriosam veritatis, quos non quis ad perspiciatis,
-              totam corporis ea, alias ut unde.</p>
+            <p class="large about-description"></p>
           </div>
         </div>
       </section>
@@ -48,7 +44,7 @@ export default{
         <div class="row flex-row-reverse">
           <div class="col-sm-4">
             <div class="team-member">
-              <img class="mx-auto rounded-circle" src="img/4.jpg" alt="">
+              <img class="mx-auto rounded-circle" src="img/1.jpg" alt="">
               <h4>Roi Levy</h4>
               <p>Fullstack WEB Developer</p>
               <ul class="list-inline social-buttons">

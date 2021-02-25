@@ -6,6 +6,15 @@
 @import '../cmps/notes-cmps/note-todos.css';
 @import '../cmps/notes-cmps/note-video.css';
 
+.keep-header{
+    display: flex;
+    justify-content: space-evenly;
+}
+.keep-header section:nth-of-type(2) {
+    display: flex;
+    flex-direction: column;
+}
+
 .notes {
     display: flex;
     flex-wrap: wrap;

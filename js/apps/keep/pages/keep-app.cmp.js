@@ -12,8 +12,10 @@ import noteVideo from '../note-cmps/note-video.cmp.js'
 export default {
     template: `
         <section class="main-content">
-            <keep-filter  @filter="setFilter"/>
-            <keep-add class="add" @save="save"/>
+            <header class="keep-header">
+                <keep-add class="add" @save="save"/>
+                <keep-filter  @filter="setFilter"/>
+            </header>
             <section class="notes">
                 <div v-for="cmp in notes">
                     <component
