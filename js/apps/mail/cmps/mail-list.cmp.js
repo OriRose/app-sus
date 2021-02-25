@@ -1,4 +1,4 @@
-import mailDetails from './mail-details.js'
+import mailDetails from './mail-details.cmp.js'
 import mailPreview from './mail-preview.cmp.js'
 
 export default {
