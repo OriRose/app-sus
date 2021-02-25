@@ -16,7 +16,7 @@ export default {
         return {
             mails: [],
             searchString: '',
-            // filterBy:null
+            // filterByFolder:null
         }
     },
     methods: {
