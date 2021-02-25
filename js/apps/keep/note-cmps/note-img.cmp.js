@@ -1,7 +1,9 @@
 export default {
     template: `
-          <section :style="{backgroundColor:color}">
+          <section :style="getStyle">
               <span :class="{fa:isPinned, 'fa-paperclip':isPinned}"></span>
+              <p v-if="!isEdit" @click="startEdit">{{info.txt}}</p>
+              <input ref="editInput" @focusout="edit" v-show="isEdit" type="text" v-model="txt">
               <img :src="info.url">
               <!-- TODO: NOTE ACTION NAV TO COMPONENT -->
               <nav>
@@ -16,37 +18,49 @@ export default {
                           <span @click="changeColor('orange')" style="background-color:orange">&nbsp;</span>
                           <span @click="changeColor('pink')" style="background-color:pink">&nbsp;</span>
                           <span @click="changeColor('white')" style="background-color:white">&nbsp;</span>
-                          <!-- <span @click="changeColor('black')" style="background-color:black">&nbsp;</span> -->
+                          <span @click="changeColor('black')" style="background-color:black">&nbsp;</span>
                       </nav>
                   </button>
-                  <!-- TODO : ADD TITLE TO IMG -->
-                  <!-- <button title="edit" @click="edit" class="fas fa-edit"></button> -->
+                  <button title="add title" @click="startEdit" class="fas fa-edit"></button>
                   <button title="delete" @click="remove" class="fas fa-trash"></button>
                 </nav>
             </section>
             `,
-    props: ["info", "id","color","isPinned"],
-    data(){
+    props: ["info", "id", "color", "isPinned"],
+    data() {
         return {
-            isChangeColor:false,
+            isChangeColor: false,
+            isEdit: false,
+            txt: this.info.txt
         }
     },
     methods: {
         edit() {
-            this.$emit('edit', this.id)
+            this.$emit('edit', this.id, this.txt);
+            this.isEdit = !this.isEdit;
         },
         remove() {
-            this.$emit('remove', this.id)
+            this.$emit('remove', this.id);
         },
         pin() {
-            this.$emit('pin', this.id)
+            this.$emit('pin', this.id);
         },
         unpin() {
-            this.$emit('unpin', this.id)
+            this.$emit('unpin', this.id);
         },
         changeColor(color) {
-            this.$emit('changeColor',this.id,color)
+            this.$emit('changeColor', this.id, color);
+        },
+        startEdit() {
+            this.isEdit = !this.isEdit;
+            setTimeout(() => {
+                this.$refs.editInput.focus();
+            }, 0);
         }
-
+    },
+    computed: {
+        getStyle() {
+            return (this.color === 'black') ? 'background-color:black;color:white' : `background-color:${this.color}`
+        }
     }
 };

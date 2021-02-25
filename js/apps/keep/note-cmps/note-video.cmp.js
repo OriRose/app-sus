@@ -1,6 +1,6 @@
 export default {
     template: `
-          <section :style="{backgroundColor:color}">
+          <section :style="getStyle">
           <span :class="{fa:isPinned, 'fa-paperclip':isPinned}"></span>
             <iframe
                 width="150" height="112"
@@ -18,7 +18,7 @@ export default {
                           <span @click="changeColor('orange')" style="background-color:orange">&nbsp;</span>
                           <span @click="changeColor('pink')" style="background-color:pink">&nbsp;</span>
                           <span @click="changeColor('white')" style="background-color:white">&nbsp;</span>
-                          <!-- <span @click="changeColor('black')" style="background-color:black">&nbsp;</span> -->
+                          <span @click="changeColor('black')" style="background-color:black">&nbsp;</span>
                       </nav>
                   </button>
                   <button @click="edit" class="fas fa-edit"></button>
@@ -26,7 +26,7 @@ export default {
                 </nav>
             </section>
             `,
-    props: ["info", "id", "color","isPinned"],
+    props: ["info", "id", "color", "isPinned"],
     data() {
         return {
             isChangeColor: false,
@@ -49,5 +49,10 @@ export default {
             this.$emit('changeColor', this.id, color)
         }
 
+    },
+    computed: {
+        getStyle() {
+            return (this.color === 'black') ? 'background-color:black;color:white' : `background-color:${this.color}`
+        }
     }
 };

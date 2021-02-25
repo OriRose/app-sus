@@ -1,6 +1,6 @@
 export default {
     template: `
-          <section :style="{backgroundColor:color}">
+          <section :style="getStyle">
           <span :class="{fa:isPinned, 'fa-paperclip':isPinned}"></span>
               <p v-if="!isEdit" @click="startEdit">{{info.txt}}</p>            
               <input ref="editInput" @focusout="edit" v-show="isEdit" type="text" v-model="txt">
@@ -16,7 +16,7 @@ export default {
                           <span @click="changeColor('orange')" style="background-color:orange">&nbsp;</span>
                           <span @click="changeColor('pink')" style="background-color:pink">&nbsp;</span>
                           <span @click="changeColor('white')" style="background-color:white">&nbsp;</span>
-                          <!-- <span @click="changeColor('black')" style="background-color:black">&nbsp;</span> -->
+                          <span @click="changeColor('black')" style="background-color:black">&nbsp;</span>
                       </nav>
                   </button>
                   <button title="edit" @click="startEdit" class="fas fa-edit"></button>
@@ -51,9 +51,15 @@ export default {
         },
         startEdit() {
             this.isEdit = !this.isEdit;
-            this.todo = this.txt;
-            this.$refs.editInput.focus();
+            setTimeout(()=>{
+                this.$refs.editInput.focus();
+            },0);
         }
 
+    },
+    computed:{
+        getStyle(){
+            return (this.color==='black')?'background-color:black;color:white':`background-color:${this.color}`
+        }
     }
 };
