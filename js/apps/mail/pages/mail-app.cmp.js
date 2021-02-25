@@ -11,7 +11,7 @@ export default {
         <mail-search @searched="getSearch"></mail-search>
         <mail-filter></mail-filter>
         <mail-list :mails="mailsToShow" @remove="removeMail" @starred="saveMail" @wasRead="saveMail"></mail-list>
-        <mail-compose></mail-compose>
+        <mail-compose @sent="loadMails"></mail-compose>
     </section>
     `,
     data() {
