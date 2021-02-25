@@ -1,13 +1,14 @@
 export default {
     template: `
-          <section :style="{backgroundColor:color}">
+          <section :style="getStyle">
           <span :class="{fa:isPinned, 'fa-paperclip':isPinned}"></span>
               <ul>
-                  <li v-if="!isEdit" v-for="(todo,idx) in info.todos" @click="startEdit(todo,idx)">
-                      <span>{{todo}}</span>
+                  <li v-for="(todo,idx) in info.todos" @click="checkTodo(idx)">
+                      <span v-if="!isEdit">{{todo.txt}}</span>
+                      <span v-if="!isEdit" :class="{fa:todo.isDone,'fa-check-circle':todo.isDone}"></span>
+                      <input v-if="isEdit" type="text" v-model="todos[idx].txt">
                       <hr/>
                     </li>
-                  <input @focusout="edit" v-if="isEdit" type="text" v-model="todo.txt">
               </ul>
               <nav>                  
                   <button v-if="!isPinned" title="pin" @click="pin" class="fas fa-thumbtack"></button>
@@ -21,10 +22,11 @@ export default {
                           <span @click="changeColor('orange')" style="background-color:orange">&nbsp;</span>
                           <span @click="changeColor('pink')" style="background-color:pink">&nbsp;</span>
                           <span @click="changeColor('white')" style="background-color:white">&nbsp;</span>
-                          <!-- <span @click="changeColor('black')" style="background-color:black">&nbsp;</span> -->
+                          <span @click="changeColor('black')" style="background-color:black">&nbsp;</span>
                       </nav>
                   </button>
-                  <button title="edit" @click="edit" class="fas fa-edit"></button>
+                  <button v-if="!isEdit" title="edit" @click="startEdit" class="fas fa-edit"></button>
+                  <button v-if="isEdit" title="save" @click="edit" class="fas fa-save"></button>
                   <button title="delete" @click="remove" class="fas fa-trash"></button>
                 </nav>
             </section>
@@ -34,14 +36,13 @@ export default {
         return {
             isChangeColor: false,
             isEdit: false,
-            todo: {},
+            todos: this.info.todos,
         }
     },
     methods: {
         edit() {
-            this.$emit('edit', this.id, this.todo)
+            this.$emit('edit', this.id, this.todos)
             this.isEdit = !this.isEdit;
-            this.todo = {};
         },
         remove() {
             this.$emit('remove', this.id)
@@ -55,14 +56,19 @@ export default {
         changeColor(color) {
             this.$emit('changeColor', this.id, color)
         },
-        startEdit(todo, idx) {
+        startEdit() {
             this.isEdit = !this.isEdit;
-            this.todo = {
-                txt: todo,
-                idx
-            };
-            // this.$refs.editInput.focus();
+        },
+        checkTodo(idx){
+            if(this.isEdit) return;
+            this.todos[idx].isDone=!this.todos[idx].isDone;
+            this.$emit('edit', this.id, this.todos);
         }
 
+    },
+    computed:{
+        getStyle(){
+            return (this.color==='black')?'background-color:black;color:white':`background-color:${this.color}`
+        }
     }
 };

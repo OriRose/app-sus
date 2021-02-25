@@ -14,8 +14,8 @@ export default {
             <button title="image" class="fa fa-image" @click="changeCmp('noteImg')"></button>
         </div>
         <!-- TODO: FORM -->
-        <input v-if="cmp.type==='noteTxt'" type="text" placeholder="what's on your'e mind?" v-model="cmp.info.txt">
-        <input v-if="cmp.type==='noteTodos'" type="text" placeholder="what's your'e todos?" v-model="todo">
+        <input ref="input" v-if="cmp.type==='noteTxt'" type="text" placeholder="what's on your'e mind?" v-model="cmp.info.txt">
+        <input ref="input" v-if="cmp.type==='noteTodos'" type="text" placeholder="what's your'e todos?" v-model="todo.txt">
         <button title="add todo" class="fa fa-plus" v-if="cmp.type==='noteTodos'" @click="addTodo"></button>
         <input  v-if="cmp.type==='noteImg'" type="file" @change="ImgInput" />
         <button title="save" class="fa fa-save" v-if="cmp.type" @click="saveNote"></button>
@@ -24,34 +24,47 @@ export default {
     data() {
         return {
             cmp: {
-                type:'noteTxt',
+                type: 'noteTxt',
                 info: {},
-                color:'#ffffff',
-                isPinned:false
+                color: '#ffffff',
+                isPinned: false
             },
-            todo: null
+            todo: {
+                txt:null,
+                isDone:false
+            }
         }
     },
     methods: {
         changeCmp(type) {
-            this.cmp.type=type;
+            this.cmp.type = type;
             this.cmp.info = {}
             if (this.cmp.type === 'noteTxt') this.cmp.info.txt = null;
             if (this.cmp.type === 'noteTodos') this.cmp.info.todos = [];
-            if (this.cmp.type === 'noteImg') this.cmp.info.url = null;
+            if (this.cmp.type === 'noteImg') this.cmp.info = { url: null, txt: null };
+            if(this.cmp.type==='noteImg') return;
+            setTimeout(()=>{
+                this.$refs.input.focus();
+            },0);
         },
         saveNote() {
             this.$emit('save', this.cmp);
             this.cmp = {
                 type: null,
                 info: {},
-                color:'#ffffff',
-                isPinned:false
+                color: '#ffffff',
+                isPinned: false
             }
         },
         addTodo() {
             this.cmp.info.todos.push(this.todo);
-            this.todo = null;
+            this.todo = {
+                txt:null,
+                isDone:false
+            };
+            setTimeout(()=>{
+                this.$refs.input.focus();
+            },0);
         },
         ImgInput(ev) {
             this.loadImageFromInput(ev)
@@ -64,5 +77,10 @@ export default {
             }
             reader.readAsDataURL(ev.target.files[0])
         }
+    },
+    mounted(){
+        setTimeout(()=>{
+            this.$refs.input.focus();
+        },0);
     }
 }
