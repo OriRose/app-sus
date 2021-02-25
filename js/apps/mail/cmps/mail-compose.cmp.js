@@ -10,7 +10,8 @@ export default {
         </div>
     `,
     methods:{
-        sendMail(){
+        sendMail(ev){
+            ev.preventDefault()
             console.log('hi')
         }
     }
