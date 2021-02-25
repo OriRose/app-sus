@@ -1,4 +1,4 @@
-// import {mailService} from '../services/mail-service.js'
+import mailDetails from './mail-details.js'
 
 export default {
     props: ['mails'],
@@ -24,11 +24,9 @@ export default {
                     <button @click="remove(mail.id)">X</button>
                     </li>
                 </ul>
-                <ul v-if="(mail.id===displayedMailIdx)">
-                    <h1>{{mail.subject}}</h1>
-                    <h2><span>{{mail.sender.name}}</span> <span>{{mail.sender.address}}</span></h2>
-                    <p>{{mail.content}}</p>
-                </ul>
+                <mail-details :mail="mail" v-if="(mail.id===displayedMailIdx)">
+                    
+                </mail-details>
             </li>
         </ul>
     </section>
@@ -50,5 +48,8 @@ export default {
             if(mailId === this.displayedMailIdx) this.displayedMailIdx = null
             else this.displayedMailIdx = mailId
         }
+    },
+    components: {
+        mailDetails
     }
 }
