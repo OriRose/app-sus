@@ -12,6 +12,7 @@ export default {
     methods:{
         sendMail(ev){
             ev.preventDefault()
+            
             console.log('hi')
         }
     }
