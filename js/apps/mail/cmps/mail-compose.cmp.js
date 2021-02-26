@@ -29,10 +29,14 @@ export default {
             newEmail.sender.address = this.recepient
             newEmail.subject = (this.subject==='') ? '(no subject)' : this.subject
             newEmail.content = this.content
-            newEmail.folder = (this.recepient==='admin@appsus.org') ? 'outbox' : 'inbox'
+            newEmail.folder = 'inbox'
             this.$emit('saveNewMail',newEmail)
             eventBus.$emit('show-msg',{txt:'Mail sent!'})
-            this.onClose()
+            if (this.recepient==='admin@appsus.org'){
+                newEmail.folder = 'outbox'
+                this.$emit('saveNewMail',newEmail)
+            }
+            this.$emit('closeMe')
         },
         onClose(){
             if(this.recepient!=='' || this.content!=='' || this.subject!==''){
