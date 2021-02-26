@@ -4,6 +4,7 @@ import { eventBus } from '../../../services/event-bus.service.js'
 export default {
     template:`
         <div>
+            <button @click="onClose">X</button>
             <form>
                 <input type="email" placeholder="To..." v-model="recepient">
                 <input type="text" placeholder="Subject" v-model="subject">
@@ -30,6 +31,10 @@ export default {
             newEmail.folder = (this.recepient==='admin@appsus.org') ? 'outbox' : 'inbox'
             this.$emit('saveNewMail',newEmail)
             eventBus.$emit('show-msg',{txt:'Mail sent!'})
+            this.onClose()
+        },
+        onClose(){
+            this.$emit('closeMe')
         }
     }
 }
