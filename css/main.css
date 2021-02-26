@@ -1,16 +1,30 @@
 @import './apps/keep/pages/keep-app.css';
-@import './cmps/app-header.css'; 
-@import './cmps/user-msg.css'; 
-@import './basic/fonts.css'; 
-@import './basic/helpers.css'; 
-@import './pages/about.css'; 
+@import './cmps/app-header.css';
+@import './cmps/user-msg.css';
+@import './basic/fonts.css';
+@import './basic/helpers.css';
+@import './pages/about.css';
 
-body,h1,h2,h3,h4,h5,h6,p,ul{
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul {
     margin: 0;
 }
-body{
-    margin-bottom: 20px;
-}
-button{
+
+button {
     cursor: pointer;
+}
+
+footer {
+    height: 80px;
+    background-color: #edc7b7;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

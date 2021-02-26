@@ -10,10 +10,10 @@ export default {
             <button title="audio" class="fa fa-music" @click="changeCmp('noteAud')"></button>
         </div>
         <!-- TODO: FORM -->
-        <form :submit.prevent="saveNote">
+        <form @submit.prevent="saveNote">
             <input ref="input" v-if="cmp.type==='noteTxt'" type="text" placeholder="what's on your'e mind?" v-model="cmp.info.txt">
             <input ref="input" v-if="cmp.type==='noteTodos'" type="text" placeholder="what's your'e todos?" v-model="todo.txt">
-            <button title="add todo" class="fa fa-plus" v-if="cmp.type==='noteTodos'" @click="addTodo"></button>
+            <button title="add todo" class="fa fa-plus" v-if="cmp.type==='noteTodos'" type="button" @click="addTodo"></button>
             <input  v-if="cmp.type==='noteImg'" type="file" @change="ImgInput" />
             <input ref="input" v-if="cmp.type==='noteVid'" type="url" placeholder="Enter video URL" v-model="cmp.info.url"/>
             <input ref="input" v-if="cmp.type==='noteAud'" type="url" placeholder="Enter audio URL" v-model="cmp.info.url"/>
