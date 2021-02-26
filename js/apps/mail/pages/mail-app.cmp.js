@@ -7,18 +7,19 @@ import mailCompose from '../cmps/mail-compose.cmp.js'
 export default {
     template: `
     <section>
-        <button>+ Compose</button>
+        <button @click="showComposer">+ Compose</button>
         <mail-search @searched="getSearch"></mail-search>
         <mail-filter @folderChanged="getFolder"></mail-filter>
         <mail-list :mails="mailsToShow" @remove="removeMail" @starred="saveMail" @wasRead="saveMail"></mail-list>
-        <mail-compose @saveNewMail="saveMail"></mail-compose>
+        <mail-compose v-if="composerVisible" @closeMe="hideComposer" @saveNewMail="saveMail"></mail-compose>
     </section>
     `,
     data() {
         return {
             mails: [],
             searchString: '',
-            filterByFolder: 'inbox'
+            filterByFolder: 'inbox',
+            composerVisible: false
         }
     },
     methods: {
@@ -40,6 +41,14 @@ export default {
             mailService.save(mail)
                 .then(console.log('saved!'))
                 .then(this.loadMails)
+        },
+        showComposer() {
+            console.log('hi')
+            this.composerVisible = true
+        },
+        hideComposer() {
+            console.log('bye')
+            this.composerVisible = false
         }
     },
     computed: {
