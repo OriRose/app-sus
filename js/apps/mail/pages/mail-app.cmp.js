@@ -18,7 +18,7 @@ export default {
         return {
             mails: [],
             searchString: '',
-            // filterByFolder:null
+            filterByFolder:'inbox'
         }
     },
     methods: {
