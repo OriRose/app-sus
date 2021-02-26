@@ -17,7 +17,7 @@ export default {
                 <keep-filter  @filter="setFilter"/>
             </header>
             <section class="notes">
-                <div v-for="cmp in notes">
+                <section v-for="cmp in notes">
                     <component
                      :is="cmp.type"
                      :info="cmp.info"
@@ -31,7 +31,7 @@ export default {
                      @unpin="unpin"
                      @changeColor="changeColor"
                      ></component>
-                </div>
+                </section>
             </section>
         </section>
     `,
