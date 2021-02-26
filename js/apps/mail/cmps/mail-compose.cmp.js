@@ -2,6 +2,7 @@ import {mailService} from '../services/mail-service.js'
 import { eventBus } from '../../../services/event-bus.service.js'
 
 export default {
+    props:['mail'],
     template:`
         <div>
             <button @click="onClose">X</button>
@@ -15,9 +16,9 @@ export default {
     `,
     data() {
         return {
-            recepient:'',
-            subject:'',
-            content:''
+            recepient:this.mail.sender.address,
+            subject:this.mail.subject,
+            content:this.mail.content
         }
     },
     methods:{

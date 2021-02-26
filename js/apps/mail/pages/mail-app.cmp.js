@@ -11,7 +11,7 @@ export default {
         <mail-search @searched="getSearch"></mail-search>
         <mail-filter @folderChanged="getFolder"></mail-filter>
         <mail-list :mails="mailsToShow" @remove="removeMail" @starred="saveMail" @wasRead="saveMail"></mail-list>
-        <mail-compose v-if="composerVisible" @closeMe="hideComposer" @saveNewMail="saveMail"></mail-compose>
+        <mail-compose :mail="mailToEdit" v-if="composerVisible" @closeMe="hideComposer" @saveNewMail="saveMail"></mail-compose>
     </section>
     `,
     data() {
@@ -19,7 +19,8 @@ export default {
             mails: [],
             searchString: '',
             filterByFolder: 'inbox',
-            composerVisible: false
+            composerVisible: false,
+            mailToEdit: mailService.getEmptyMail()
         }
     },
     methods: {
