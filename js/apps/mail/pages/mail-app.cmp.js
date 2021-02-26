@@ -3,12 +3,14 @@ import mailFilter from '../cmps/mail-filter.cmp.js'
 import mailSearch from '../cmps/mail-search.cmp.js'
 import { mailService } from '../services/mail-service.js'
 import mailCompose from '../cmps/mail-compose.cmp.js'
+import mailReadUnreadFilter from '../cmps/mail-read-unread-filter.cmp.js'
 
 export default {
     template: `
     <section>
         <button @click="showComposer">+ Compose</button>
         <mail-search @searched="getSearch"></mail-search>
+        <mail-read-unread-filter @readUnreadFilterChanged="setReadUnreadFilter"></mail-read-unread-filter>
         <mail-filter @folderChanged="getFolder"></mail-filter>
         <mail-list :mails="mailsToShow" @remove="removeMail" @starred="saveMail" @wasRead="saveMail"></mail-list>
         <mail-compose :mail="mailToEdit" v-if="composerVisible" @closeMe="hideComposer" @saveNewMail="saveMail"></mail-compose>
@@ -20,7 +22,8 @@ export default {
             searchString: '',
             filterByFolder: 'inbox',
             composerVisible: false,
-            mailToEdit: mailService.getEmptyMail()
+            mailToEdit: mailService.getEmptyMail(),
+            readUnreadFilter: 'all'
         }
     },
     methods: {
@@ -48,6 +51,9 @@ export default {
         },
         hideComposer() {
             this.composerVisible = false
+        },
+        setReadUnreadFilter(filter){
+            this.readUnreadFilter = filter
         }
     },
     computed: {
@@ -77,7 +83,7 @@ export default {
                     if (mail.folder==='drafts') mailsInFolder.push(mail)
                 });
             }
-            if (!this.searchString) return mailsInFolder
+            // if (!this.searchString) return mailsInFolder
 
             const searchStringLowercased = this.searchString.toLowerCase()
             const mailsToShow = mailsInFolder.filter(mail => {
@@ -87,6 +93,19 @@ export default {
                     mail.content.toLowerCase().includes(searchStringLowercased))
             })
 
+            if(this.readUnreadFilter==='read'){
+                const mailAfterReadUnreadFilter = mailsToShow.filter(mail => {
+                    return mail.wasRead
+                })
+                return mailAfterReadUnreadFilter
+            }
+            else if(this.readUnreadFilter==='unread'){
+                const mailAfterReadUnreadFilter = mailsToShow.filter(mail => {
+                    return !mail.wasRead
+                })
+                return mailAfterReadUnreadFilter
+            }
+
             return mailsToShow
         }
     },
@@ -95,6 +114,6 @@ export default {
     },
     components:
     {
-        mailList, mailFilter, mailSearch, mailCompose
+        mailList, mailFilter, mailSearch, mailCompose,mailReadUnreadFilter
     }
 }
