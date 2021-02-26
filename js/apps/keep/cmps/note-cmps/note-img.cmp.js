@@ -5,7 +5,9 @@ export default {
           <section :style="getStyle">
               <span :class="{fa:isPinned, 'fa-paperclip':isPinned}"></span>
               <p v-if="!isEdit" @click="startEdit">{{info.txt}}</p>
-              <input ref="editInput" v-show="isEdit" type="text" v-model="txt">
+              <form @submit.prevent="edit">
+                  <input ref="editInput" v-show="isEdit" type="text" v-model="txt">
+              </form>
               <img :src="info.url">
               <action-nav
                      :info="info"

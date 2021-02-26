@@ -4,8 +4,10 @@ export default {
     template: `
           <section :style="getStyle">
           <span :class="{fa:isPinned, 'fa-paperclip':isPinned}"></span>
-              <p v-if="!isEdit" @click="startEdit">{{info.txt}}</p>            
-              <input ref="editInput" @focusout="edit" v-show="isEdit" type="text" v-model="txt">
+              <p v-if="!isEdit" @click="startEdit">{{info.txt}}</p>
+              <form @submit.prevent="edit">
+                  <input ref="editInput" @focusout="edit" v-show="isEdit" type="text" v-model="txt">
+              </form>            
               <action-nav
                      :info="info"
                      :color="color"

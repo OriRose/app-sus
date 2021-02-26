@@ -5,7 +5,9 @@ export default {
           <section :style="getStyle">
           <span :class="{fa:isPinned, 'fa-paperclip':isPinned}"></span>
               <p v-if="!isEdit" @click="startEdit">{{info.txt}}</p>
-              <input ref="editInput" v-show="isEdit" type="text" v-model="txt">
+              <form @submit.prevent="edit">
+                  <input ref="editInput" v-show="isEdit" type="text" v-model="txt">
+              </form>
             <iframe
                 width="100%" height="100%"
                 :src="getUrl">

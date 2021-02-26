@@ -8,9 +8,14 @@ export default {
                   <li v-for="(todo,idx) in info.todos" @click="checkTodo(idx)">
                       <span v-if="!isEdit">{{todo.txt}}</span>
                       <span v-if="!isEdit" :class="{fa:todo.isDone,'fa-check-circle':todo.isDone}"></span>
-                      <input v-if="isEdit" type="text" v-model="todos[idx].txt">
-                      <hr/>
-                    </li>
+                      <form @submit.prevent="edit">
+                        <input v-if="isEdit" type="text" v-model="todos[idx].txt">
+                    </form>
+                    <hr/>
+                </li>
+                <li v-if="isEdit">
+                    <input ref="newTodoInput" type="text" v-model="newTodo.txt">
+                </li>
               </ul>
               <action-nav
                      :info="info"
@@ -28,10 +33,20 @@ export default {
         return {
             isEdit: false,
             todos: this.info.todos,
+            newTodo: {
+                isDone: false,
+                txt: null
+            }
         }
     },
     methods: {
         edit() {
+            if (this.newTodo.txt) {
+                this.todos.push(this.newTodo);
+                setTimeout(() => {
+                    this.newTodo.txt = null;
+                }, 0);
+            }
             this.$emit('edit', this.id, this.todos)
             this.isEdit = !this.isEdit;
         },
@@ -39,7 +54,7 @@ export default {
             this.isEdit = !this.isEdit;
             if (this.isEdit) {
                 setTimeout(() => {
-                    this.$refs.editInput.focus();
+                    // this.$refs.editInput.focus();
                 }, 0);
             }
         },

@@ -24,7 +24,8 @@ export default {
                      :color="cmp.color"
                      :isPinned="cmp.isPinned"
                      :id="cmp.id" 
-                     class="note" 
+                     class="note"
+                     :class="{pin:cmp.isPinned}" 
                      @edit="edit" 
                      @remove="remove"
                      @pin="pin"
@@ -38,7 +39,7 @@ export default {
     data() {
         return {
             notes: null,
-            filter:null
+            filter: null
         }
     },
     methods: {
@@ -46,14 +47,19 @@ export default {
             keepService.query()
                 .then(notes => {
                     console.log('notes:', notes)
-                    if(this.filter){
-                        const notesToShow=notes.filter(note=>{
-                            if(note.type==='noteTodos'){
-                                return note.info.todos.some(todo=>todo.txt.includes(this.filter))
+                    if (this.filter) {
+                        const notesToShow = notes.filter(note => {
+                            if (note.type === 'noteTodos') {
+                                return note.info.todos.some(todo => {
+                                    if (todo.txt) {
+                                        return todo.txt.toLowerCase().includes(this.filter.toLowerCase())
+                                    }
+                                })
                             }
-                            else{
-                                if(note.info.txt){
-                                    return note.info.txt.includes(this.filter);
+                            else {
+                                console.log('note:', note)
+                                if (note.info.txt) {
+                                    return note.info.txt.toLowerCase().includes(this.filter.toLowerCase());
                                 }
                                 else return;
                             }
@@ -61,8 +67,8 @@ export default {
                         console.log('notesToShow:', notesToShow)
                         this.notes = notesToShow
                     }
-                    else{
-                        this.notes=notes;
+                    else {
+                        this.notes = notes;
                     }
                 });
         },
@@ -70,25 +76,25 @@ export default {
             keepService.save(note)
                 .then(() => this.getNotes())
                 .then(() => this.showMsg('success'))
-                .catch(()=> this.showMsg('error'))
+                .catch(() => this.showMsg('error'))
         },
         edit(id, val) {
             keepService.getById(id)
-            .then(note => {
-                    if(typeof (val) === 'string') note.info.txt = val;
-                    else note.info.todos=val;                   
+                .then(note => {
+                    if (typeof (val) === 'string') note.info.txt = val;
+                    else note.info.todos = val;
                     keepService.save(note)
-                    .then(() => this.getNotes())
-                    .then(() => this.showMsg('success'))
-                    .catch(()=> this.showMsg('error'))
+                        .then(() => this.getNotes())
+                        .then(() => this.showMsg('success'))
+                        .catch(() => this.showMsg('error'))
                 })
-            
+
         },
         remove(id) {
             keepService.remove(id)
                 .then(() => this.getNotes())
                 .then(() => this.showMsg('success'))
-                .catch(()=> this.showMsg('error'))
+                .catch(() => this.showMsg('error'))
         },
         pin(id) {
             keepService.getIdxById(id)
@@ -101,7 +107,7 @@ export default {
                             keepService.save(note)
                                 .then(() => this.getNotes())
                                 .then(() => this.showMsg('success'))
-                                .catch(()=> this.showMsg('error'))
+                                .catch(() => this.showMsg('error'))
                         })
                 })
 
@@ -117,7 +123,7 @@ export default {
                             keepService.save(note)
                                 .then(() => this.getNotes())
                                 .then(() => this.showMsg('success'))
-                                .catch(()=> this.showMsg('error'))
+                                .catch(() => this.showMsg('error'))
                         })
                 })
 
@@ -129,17 +135,17 @@ export default {
                     keepService.save(note)
                         .then(() => this.getNotes())
                         .then(() => this.showMsg('success'))
-                        .catch(()=> this.showMsg('error'))
+                        .catch(() => this.showMsg('error'))
                 })
         },
-        setFilter(filterKey){
+        setFilter(filterKey) {
             console.log('filterKey:', filterKey)
-            this.filter=filterKey;
+            this.filter = filterKey;
             this.getNotes();
         },
         showMsg(type) {
             const msg = {
-                txt: (type==='success')?'note saved':'try again later!',
+                txt: (type === 'success') ? 'note saved' : 'try again later!',
                 type
             }
             eventBus.$emit('show-msg', msg);
@@ -147,11 +153,11 @@ export default {
     },
     created() {
         this.getNotes();
-        eventBus.$on('edit',this.edit);
-        eventBus.$on('remove',this.remove);
-        eventBus.$on('pin',this.pin);
-        eventBus.$on('unpin',this.unpin);
-        eventBus.$on('changeColor',this.changeColor);
+        eventBus.$on('edit', this.edit);
+        eventBus.$on('remove', this.remove);
+        eventBus.$on('pin', this.pin);
+        eventBus.$on('unpin', this.unpin);
+        eventBus.$on('changeColor', this.changeColor);
     },
     components: {
         keepFilter,
