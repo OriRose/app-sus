@@ -35,6 +35,15 @@ export default {
             this.onClose()
         },
         onClose(){
+            if(this.recepient!=='' || this.content!=='' || this.subject!==''){
+                const newDraft = mailService.getEmptyMail()
+                newDraft.subject = this.subject
+                newDraft.content = this.content
+                newDraft.folder = 'drafts'
+                newDraft.wasRead = true
+                this.$emit('saveNewMail',newDraft)
+                eventBus.$emit('show-msg',{txt:'Saved as Draft'})
+            }
             this.$emit('closeMe')
         }
     }

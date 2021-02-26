@@ -44,11 +44,9 @@ export default {
                 .then(this.loadMails)
         },
         showComposer() {
-            console.log('hi')
             this.composerVisible = true
         },
         hideComposer() {
-            console.log('bye')
             this.composerVisible = false
         }
     },
