@@ -1,24 +1,28 @@
 export default {
     props: ['mail'],
     template: `
-    <ul>
-                    <li>
-                    <button v-if="mail.isStarred" @click="toggleStar(mail)">★</button>
-                    <button v-else @click="toggleStar(mail)">☆</button>
-                    </li>
-                    <li @click="display(mail.id)" v-bind:class="{bold : isBold}">
+    <div class="mail-preview">
+                    
+                    <button class="btn-info" v-if="mail.isStarred" @click="toggleStar(mail)">★</button>
+                    <button class="btn-info" v-else @click="toggleStar(mail)">☆</button>
+                    <div class="mail-preview-inner-container">
+                    <div class="contact-container" @click="display(mail.id)" v-bind:class="{bold : isBold}">
                         {{mail.sender.name}}
-                    </li>
-                    <li @click="display(mail.id)" v-bind:class="{bold : isBold}">
-                        {{mail.subject}}
-                    </li>
-                    <li @click="display(mail.id)" v-bind:class="{bold : isBold}">
-                        {{mail.timestamp}}
-                    </li>
-                    <li>
-                    <button @click="remove(mail.id)">X</button>
-                    </li>
-    </ul>
+                    </div>
+                    <div  @click="display(mail.id)" class="mail-preview-other-inner-container">
+                        <div v-bind:class="{bold : isBold}">
+                            {{mail.subject}}
+                            {{mail.content}}
+                        </div>
+                        <div v-bind:class="{bold : isBold}">
+                            {{mail.timestamp}}
+                        </div>
+                    </div>
+                    </div>
+                    <button class="mail-delete-btn btn-danger" @click="remove(mail.id)"><i class="fa fa-trash" aria-hidden="true"></i></button>
+
+                    
+    </div>
     `,
     data () {
         return {

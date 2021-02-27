@@ -5,16 +5,16 @@ export default {
     props: ['mails'],
     template: `
     <section>
-        <ul>
-            <li v-for="mail in mails" :key="mail.id">
+        <div>
+            <div v-for="mail in mails" :key="mail.id">
                 <mail-preview ref="mailPreview" :mail="mail" @remove="remove" @display="displayMail" @star="toggleStar">
                     
                 </mail-preview>
                 <mail-details :mail="mail" v-if="(mail.id===displayedMailIdx)" @wasRead="wasRead">
                     
                 </mail-details>
-            </li>
-        </ul>
+            </div>
+        </div>
     </section>
     `,
     data() {
