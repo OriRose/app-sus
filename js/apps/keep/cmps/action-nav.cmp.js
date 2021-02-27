@@ -1,4 +1,4 @@
-import {eventBus} from '../../../services/event-bus.service.js'
+import { eventBus } from '../../../services/event-bus.service.js'
 export default {
     template: `
                 <nav>
@@ -18,16 +18,20 @@ export default {
                   </button>
                   <button :style="getTextColor" v-if="!isEdit" title="add title" @click.self="startEdit" class="fas fa-edit"></button>
                   <button :style="getTextColor" v-if="isEdit" title="save" @click.self="edit" class="fas fa-save"></button>
-                  <button :style="getTextColor" title="mail" @click="mail" class="fas fa-paper-plane"></button>
+                  <!-- <router-link to="/mail"></router-link> -->
+                  
                   <button :style="getTextColor" title="delete" @click="remove" class="fas fa-trash"></button>
+                   <button>
+                      <router-link :to="'/mail/'+info.txt" :style="getTextColor" title="mail" @click="mail" class="fas fa-paper-plane"></router-link>
+                   </button>
                 </nav>
     `,
-    props: ["info", "id", "color", "isPinned","isEdit"],
+    props: ["info", "id", "color", "isPinned", "isEdit"],
     data() {
         return {
             isChangeColor: false,
             // isActionEdit: this.isEdit,
-            txt: this.info.txt
+            txt: this.info.txt,
         }
     },
     methods: {
@@ -53,8 +57,10 @@ export default {
             // this.isActionEdit = !this.isActionEdit;
             this.$emit('startEdit');
         },
-        mail(){
+        mail() {
             // eventBus.$emit('mail', this.info);
+            // eventBus.$emit('note-mail',this.info);
+            // this.$router.push('/mail');
         }
     },
     computed: {
@@ -63,6 +69,13 @@ export default {
         },
         getTextColor() {
             return (this.color === 'black') ? 'color:white' : ``;
-        }
+        },
+        // getInfoString(){
+        //     var str='';
+        //     if(this.info.txt) str+=`txt=${this.info.txt}`;
+        //     if(this.info.url) str+=`&url=${this.info.url}`;
+        //     if(this.info.todos) str+=`&todos=${this.info.todos}`;
+        //     return str;
+        // }
     }
 }

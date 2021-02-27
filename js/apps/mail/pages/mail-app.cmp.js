@@ -4,6 +4,7 @@ import mailSearch from '../cmps/mail-search.cmp.js'
 import { mailService } from '../services/mail-service.js'
 import mailCompose from '../cmps/mail-compose.cmp.js'
 import mailReadUnreadFilter from '../cmps/mail-read-unread-filter.cmp.js'
+import { eventBus } from '../../../services/event-bus.service.js'
 
 export default {
     template: `
@@ -61,13 +62,20 @@ export default {
             this.composerVisible = true
         },
         hideComposer() {
+            console.log('comp');
             this.composerVisible = false
         },
-        setReadUnreadFilter(filter){
+        setReadUnreadFilter(filter) {
             this.readUnreadFilter = filter
         },
-        toggleDropdown(){
+        toggleDropdown() {
             this.isDropdownDisplayed = !this.isDropdownDisplayed
+        },
+        noteMail() {
+            this.composerVisible=true;
+            const info=this.$route.params.txt;
+            console.log('info:', info)
+            this.mailToEdit.content=info;
         }
     },
     computed: {
@@ -76,13 +84,13 @@ export default {
 
             if (this.filterByFolder === 'inbox') {
                 this.mails.forEach(mail => {
-                    if (mail.folder==='inbox') mailsInFolder.push(mail)
+                    if (mail.folder === 'inbox') mailsInFolder.push(mail)
                 });
             }
 
             if (this.filterByFolder === 'sent') {
                 this.mails.forEach(mail => {
-                    if (mail.folder==='outbox') mailsInFolder.push(mail)
+                    if (mail.folder === 'outbox') mailsInFolder.push(mail)
                 });
             }
 
@@ -94,7 +102,7 @@ export default {
 
             if (this.filterByFolder === 'drafts') {
                 this.mails.forEach(mail => {
-                    if (mail.folder==='drafts') mailsInFolder.push(mail)
+                    if (mail.folder === 'drafts') mailsInFolder.push(mail)
                 });
             }
             // if (!this.searchString) return mailsInFolder
@@ -107,13 +115,13 @@ export default {
                     mail.content.toLowerCase().includes(searchStringLowercased))
             })
 
-            if(this.readUnreadFilter==='read'){
+            if (this.readUnreadFilter === 'read') {
                 const mailAfterReadUnreadFilter = mailsToShow.filter(mail => {
                     return mail.wasRead
                 })
                 return mailAfterReadUnreadFilter
             }
-            else if(this.readUnreadFilter==='unread'){
+            else if (this.readUnreadFilter === 'unread') {
                 const mailAfterReadUnreadFilter = mailsToShow.filter(mail => {
                     return !mail.wasRead
                 })
@@ -121,13 +129,23 @@ export default {
             }
 
             return mailsToShow
+        },
+        noteInfo(){
+            return this.$route.params.txt
         }
     },
     mounted() {
         this.loadMails()
     },
+    created() {
+        // eventBus.$on('note-mail', this.noteMail)
+        if(this.noteInfo){
+            console.log('enter');
+            this.noteMail();
+        }
+    },
     components:
     {
-        mailList, mailFilter, mailSearch, mailCompose,mailReadUnreadFilter
+        mailList, mailFilter, mailSearch, mailCompose, mailReadUnreadFilter
     }
 }
