@@ -3,20 +3,23 @@ export default {
     template: `
     <div class="mail-preview">
                     
-                    <button v-if="mail.isStarred" @click="toggleStar(mail)">★</button>
-                    <button v-else @click="toggleStar(mail)">☆</button>
+                    <button class="btn-info" v-if="mail.isStarred" @click="toggleStar(mail)">★</button>
+                    <button class="btn-info" v-else @click="toggleStar(mail)">☆</button>
                     <div class="mail-preview-inner-container">
                     <div class="contact-container" @click="display(mail.id)" v-bind:class="{bold : isBold}">
                         {{mail.sender.name}}
                     </div>
-                    <div @click="display(mail.id)" v-bind:class="{bold : isBold}">
-                        {{mail.subject}}
+                    <div  @click="display(mail.id)" class="mail-preview-other-inner-container">
+                        <div v-bind:class="{bold : isBold}">
+                            {{mail.subject}}
+                            {{mail.content}}
+                        </div>
+                        <div v-bind:class="{bold : isBold}">
+                            {{mail.timestamp}}
+                        </div>
                     </div>
-                    <div @click="display(mail.id)" v-bind:class="{bold : isBold}">
-                        {{mail.timestamp}}
                     </div>
-                    </div>
-                    <button class="mail-delete-btn" @click="remove(mail.id)">X</button>
+                    <button class="mail-delete-btn btn-danger" @click="remove(mail.id)"><i class="fa fa-trash" aria-hidden="true"></i></button>
 
                     
     </div>
