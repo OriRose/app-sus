@@ -1,6 +1,6 @@
 export default {
     template: `
-        <ul>
+        <ul class="mail-filter-list clean-list">
             <li @click="setFolderInbox">Inbox</li>
             <li @click="setFolderStarred">Starred</li>
             <li @click="setFolderSent">Sent Mail</li>

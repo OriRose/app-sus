@@ -8,10 +8,20 @@ import mailReadUnreadFilter from '../cmps/mail-read-unread-filter.cmp.js'
 export default {
     template: `
     <section>
-        <button @click="showComposer">+ Compose</button>
-        <mail-search @searched="getSearch"></mail-search>
-        <mail-read-unread-filter @readUnreadFilterChanged="setReadUnreadFilter"></mail-read-unread-filter>
-        <mail-filter @folderChanged="getFolder"></mail-filter>
+        <div class = "search-container">
+            <div class="secondary-container">
+                <mail-search @searched="getSearch"></mail-search>
+                <mail-read-unread-filter @readUnreadFilterChanged="setReadUnreadFilter"></mail-read-unread-filter>
+            </div>
+            <div class="dropdown menu-btn" @click="toggleDropdown">
+                 <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                 </button>
+                 <div v-if="isDropdownDisplayed" class="mail-dropdown" aria-labelledby="dropdownMenuButton">
+                     <button class="composer-btn" @click="showComposer">+ Compose</button>
+                     <mail-filter @folderChanged="getFolder"></mail-filter>
+                 </div>
+            </div>
+        </div>
         <mail-list :mails="mailsToShow" @remove="removeMail" @starred="saveMail" @wasRead="saveMail"></mail-list>
         <mail-compose :mail="mailToEdit" v-if="composerVisible" @closeMe="hideComposer" @saveNewMail="saveMail"></mail-compose>
     </section>
@@ -23,7 +33,8 @@ export default {
             filterByFolder: 'inbox',
             composerVisible: false,
             mailToEdit: mailService.getEmptyMail(),
-            readUnreadFilter: 'all'
+            readUnreadFilter: 'all',
+            isDropdownDisplayed: false
         }
     },
     methods: {
@@ -54,6 +65,9 @@ export default {
         },
         setReadUnreadFilter(filter){
             this.readUnreadFilter = filter
+        },
+        toggleDropdown(){
+            this.isDropdownDisplayed = !this.isDropdownDisplayed
         }
     },
     computed: {

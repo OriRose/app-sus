@@ -5,6 +5,7 @@
 @import './basic/fonts.css';
 @import './basic/helpers.css';
 @import './pages/about.css';
+@import './apps/mail/mail-app.css';
 
 body,
 h1,
