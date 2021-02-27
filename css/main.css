@@ -1,4 +1,5 @@
 @import './apps/keep/pages/keep-app.css';
+@import './apps/book/pages/book-app.css';
 @import './cmps/app-header.css';
 @import './cmps/user-msg.css';
 @import './basic/fonts.css';
@@ -17,6 +18,10 @@ ul {
     margin: 0;
 }
 
+/* body {
+    height: 100vh;
+} */
+
 button {
     cursor: pointer;
 }
@@ -27,4 +32,7 @@ footer {
     display: flex;
     justify-content: center;
     align-items: center;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
 }

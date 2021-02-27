@@ -10,9 +10,9 @@ const options = {
         <user-msg/>
         <app-header/>
         <router-view/>
-        <footer>
+        <!-- <footer>
             &copy copyrights 2021
-        </footer>
+        </footer> -->
     </section>
     `,
     data() {

@@ -18,6 +18,7 @@ export default {
                   </button>
                   <button :style="getTextColor" v-if="!isEdit" title="add title" @click.self="startEdit" class="fas fa-edit"></button>
                   <button :style="getTextColor" v-if="isEdit" title="save" @click.self="edit" class="fas fa-save"></button>
+                  <button :style="getTextColor" title="mail" @click="mail" class="fas fa-paper-plane"></button>
                   <button :style="getTextColor" title="delete" @click="remove" class="fas fa-trash"></button>
                 </nav>
     `,
@@ -31,31 +32,34 @@ export default {
     },
     methods: {
         edit() {
-            this.$emit('edit', this.id, this.txt)
+            this.$emit('edit', this.id, this.txt);
             setTimeout(() => {
                 this.isEdit = !this.isEdit;
             }, 0);
         },
         remove() {
-            eventBus.$emit('remove', this.id)
+            eventBus.$emit('remove', this.id);
         },
         pin() {
-            eventBus.$emit('pin', this.id)
+            eventBus.$emit('pin', this.id);
         },
         unpin() {
-            eventBus.$emit('unpin', this.id)
+            eventBus.$emit('unpin', this.id);
         },
         changeColor(color) {
-            eventBus.$emit('changeColor', this.id, color)
+            eventBus.$emit('changeColor', this.id, color);
         },
         startEdit() {
             this.isEdit = !this.isEdit;
-            this.$emit('startEdit')
+            this.$emit('startEdit');
+        },
+        mail(){
+            // eventBus.$emit('mail', this.info);
         }
     },
     computed: {
         getStyle() {
-            return (this.color === 'black') ? 'background-color:black;color:white' : `background-color:${this.color}`
+            return (this.color === 'black') ? 'background-color:black;color:white' : `background-color:${this.color}`;
         },
         getTextColor() {
             return (this.color === 'black') ? 'color:white' : ``;
