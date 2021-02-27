@@ -17,21 +17,40 @@ export default {
                 <keep-filter  @filter="setFilter"/>
             </header>
             <section class="notes">
-                <section v-for="cmp in notes">
+                <section v-for="cmp in notes" v-if="cmp.isPinned">
                     <component
-                     :is="cmp.type"
-                     :info="cmp.info"
-                     :color="cmp.color"
-                     :isPinned="cmp.isPinned"
-                     :id="cmp.id" 
-                     class="note"
-                     :class="{pin:cmp.isPinned}" 
-                     @edit="edit" 
-                     @remove="remove"
-                     @pin="pin"
-                     @unpin="unpin"
-                     @changeColor="changeColor"
-                     ></component>
+                    :is="cmp.type"
+                    :info="cmp.info"
+                    :color="cmp.color"
+                    :isPinned="cmp.isPinned"
+                    :id="cmp.id" 
+                    class="note"
+                    :class="{pin:cmp.isPinned}" 
+                    @edit="edit" 
+                    @remove="remove"
+                    @pin="pin"
+                    @unpin="unpin"
+                    @changeColor="changeColor"
+                    ></component>
+                </section>
+            </section>
+            <hr/>
+            <section class="notes">
+                <section v-for="cmp in notes" v-if="!cmp.isPinned">
+                    <component
+                    :is="cmp.type"
+                    :info="cmp.info"
+                    :color="cmp.color"
+                    :isPinned="cmp.isPinned"
+                    :id="cmp.id" 
+                    class="note"
+                    :class="{pin:cmp.isPinned}" 
+                    @edit="edit" 
+                    @remove="remove"
+                    @pin="pin"
+                    @unpin="unpin"
+                    @changeColor="changeColor"
+                    ></component>
                 </section>
             </section>
         </section>

@@ -6,7 +6,6 @@ export default {
             <h5 v-for="author in book.authors">{{author}}</h5>
             <span>{{formattedPrice}}</span>
             <img :src="book.thumbnail" :alt="book.title">
-            <!-- <button>Details</button> -->
             <router-link :to="'/book/'+book.id" class="details">Details</router-link>
     </router-link>
     `,

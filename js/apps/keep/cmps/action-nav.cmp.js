@@ -7,8 +7,8 @@ export default {
                   <button :style="getTextColor" @click="isChangeColor=!isChangeColor" class="fas fa-palette">
                       <nav v-if="isChangeColor">
                           <span @click="changeColor('red')" style="background-color:red">&nbsp;</span>
-                          <span @click="changeColor('blue')" style="background-color:blue">&nbsp;</span>
-                          <span @click="changeColor('green')" style="background-color:green">&nbsp;</span>
+                          <span @click="changeColor('lightblue')" style="background-color:lightblue">&nbsp;</span>
+                          <span @click="changeColor('lightgreen')" style="background-color:lightgreen">&nbsp;</span>
                           <span @click="changeColor('brown')" style="background-color:brown">&nbsp;</span>
                           <span @click="changeColor('orange')" style="background-color:orange">&nbsp;</span>
                           <span @click="changeColor('pink')" style="background-color:pink">&nbsp;</span>

@@ -7,12 +7,13 @@ const options = {
     router: myRouter,
     template: `
     <section>
+    <div class="main-screen" @click="toggleMenu"></div>
         <user-msg/>
         <app-header/>
         <router-view/>
-        <!-- <footer>
+        <footer>
             &copy copyrights 2021
-        </footer> -->
+        </footer>
     </section>
     `,
     data() {
@@ -22,6 +23,12 @@ const options = {
     components: {
         appHeader,
         userMsg
+    },
+    methods:{
+      toggleMenu(){
+          console.log('toggle');
+        document.body.classList.toggle('menu-open');
+      }
     }
 }
 
