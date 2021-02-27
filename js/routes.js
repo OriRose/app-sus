@@ -32,6 +32,10 @@ const routes = [
         component: mailApp
     },
     {
+        path:'/mail/:txt?',
+        component:mailApp
+    },
+    {
         path: '/about',
         component: aboutPage
     }

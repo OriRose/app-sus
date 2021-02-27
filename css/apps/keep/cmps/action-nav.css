@@ -7,6 +7,10 @@
     outline: none;
     transition: all .5s;
 }
+.note a {
+    color: black;
+    text-decoration: none;
+}
 
 .note button:hover {
     border-radius: 100%;
