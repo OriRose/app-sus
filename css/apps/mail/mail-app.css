@@ -94,3 +94,14 @@
     width: 100%;
     margin-left: 5px;
 }
+
+.mail-preview-content{
+    white-space: nowrap;
+    overflow:hidden;
+    text-overflow: ellipsis;
+}
+
+.mail-details{
+    background-color: lightgreen;
+    padding-left: 8%;
+}

@@ -34,22 +34,24 @@ function getById(id) {
 }
 
 function _createEmails() {
+    let d = new Date()
     let mails = utilService.loadFromStorage(EMAIL_KEY)
     if (!mails || !mails.length) {
         mails = []
         //Todo: make better demo data
-        mails.push(_createMail('Puki','pukiMcPuck@bouncy.mail','hi!','Hello',0,'inbox',false))
-        mails.push(_createMail('Shuki','shukiMcShocko@jmail.com','Greetings, human!','Welcome to universe',0,'inbox',false))
-        mails.push(_createMail('Muki','muki@amazon.mail.org','You made 153485$ this month','Revenue Report',0,'inbox',false))
-        mails.push(_createMail('Goliath Bank','noreply@goliathBank.org','Your stocks portfolio was updated.','Stocks Portfolio',0,'inbox',false))
-        mails.push(_createMail('Spongebob','spongebob@oceanicmail.com','Your order of 1 krabby patty is on its way','Krabby Patty Order',0,'inbox',false))
+        mails.push(_createMail('Puki','pukiMcPuck@bouncy.mail','hi!','Hello',d.toLocaleString(),'inbox',false))
+        mails.push(_createMail('Shuki','shukiMcShocko@jmail.com','Greetings, human!','Welcome to universe',d.toLocaleString(),'inbox',false))
+        mails.push(_createMail('Muki','muki@amazon.mail.org','You made 153485$ this month','Revenue Report',d.toLocaleString(),'inbox',false))
+        mails.push(_createMail('Goliath Bank','noreply@goliathBank.org','Your stocks portfolio was updated.','Stocks Portfolio',d.toLocaleString(),'inbox',false))
+        mails.push(_createMail('Spongebob','spongebob@oceanicmail.com','Your order of 1 krabby patty is on its way','Krabby Patty Order',d.toLocaleString(),'inbox',false))
         utilService.saveToStorage(EMAIL_KEY, mails)
     }
     return mails;
 }
 
 function getEmptyMail() {
-    return { id: '', sender: { name: '', address: '' }, content: '', subject: '', timestamp: Date.now(), folder: '', isStarred: false, wasRead: false }
+    let d = new Date()
+    return { id: '', sender: { name: '', address: '' }, content: '', subject: '', timestamp: d.toLocaleString(), folder: '', isStarred: false, wasRead: false }
 }
 
 function _createMail(senderName, senderAddress, content, subject, timestamp, folder, isStarred) {
