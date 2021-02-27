@@ -1,8 +1,6 @@
 export default {
     template: `
-        <section>
-            <input ref="searchInput" type="text" placeholder="Search mail..." @input="setSearch" v-model="searchString">
-        </section>
+            <input class="mail-searchbox" ref="searchInput" type="text" placeholder="Search mail..." @input="setSearch" v-model="searchString">
     `,
     data() {
         return {

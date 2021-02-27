@@ -10,3 +10,7 @@
 .bold{
     font-weight: bold;
 }
+
+.clean-list{
+    list-style-type: none;
+}
