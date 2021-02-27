@@ -64,3 +64,25 @@
 .mail-filter-list>*:hover{
     cursor: pointer;
 }
+
+.mail-preview{
+    border: 2px black solid;
+    display: flex;
+    flex-direction: row;
+    background-color: rgb(99, 95, 109);
+    color: white;
+}
+
+.mail-preview-inner-container{
+    display: flex;
+    flex-direction: row;
+    border: 2px black solid;
+    width: 100%;
+}
+
+.contact-container{
+    width: 10%;
+    white-space: nowrap;
+    overflow:hidden;
+    text-overflow: ellipsis;
+}

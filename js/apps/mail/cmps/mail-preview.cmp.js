@@ -1,24 +1,25 @@
 export default {
     props: ['mail'],
     template: `
-    <ul>
-                    <li>
+    <div class="mail-preview">
+                    
                     <button v-if="mail.isStarred" @click="toggleStar(mail)">★</button>
                     <button v-else @click="toggleStar(mail)">☆</button>
-                    </li>
-                    <li @click="display(mail.id)" v-bind:class="{bold : isBold}">
+                    <div class="mail-preview-inner-container">
+                    <div class="contact-container" @click="display(mail.id)" v-bind:class="{bold : isBold}">
                         {{mail.sender.name}}
-                    </li>
-                    <li @click="display(mail.id)" v-bind:class="{bold : isBold}">
+                    </div>
+                    <div @click="display(mail.id)" v-bind:class="{bold : isBold}">
                         {{mail.subject}}
-                    </li>
-                    <li @click="display(mail.id)" v-bind:class="{bold : isBold}">
+                    </div>
+                    <div @click="display(mail.id)" v-bind:class="{bold : isBold}">
                         {{mail.timestamp}}
-                    </li>
-                    <li>
-                    <button @click="remove(mail.id)">X</button>
-                    </li>
-    </ul>
+                    </div>
+                    </div>
+                    <button class="mail-delete-btn" @click="remove(mail.id)">X</button>
+
+                    
+    </div>
     `,
     data () {
         return {
