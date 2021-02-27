@@ -52,6 +52,10 @@ footer {
     cursor: pointer;
     transition: opacity .4s;
 }
+input{
+    border-radius:10px;
+    outline: none;
+}
 
 @media (max-width:550px){
     body.menu-open .main-screen {

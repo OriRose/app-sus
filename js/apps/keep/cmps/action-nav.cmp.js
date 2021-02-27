@@ -22,20 +22,20 @@ export default {
                   <button :style="getTextColor" title="delete" @click="remove" class="fas fa-trash"></button>
                 </nav>
     `,
-    props: ["info", "id", "color", "isPinned"],
+    props: ["info", "id", "color", "isPinned","isEdit"],
     data() {
         return {
             isChangeColor: false,
-            isEdit: false,
+            // isActionEdit: this.isEdit,
             txt: this.info.txt
         }
     },
     methods: {
         edit() {
             this.$emit('edit', this.id, this.txt);
-            setTimeout(() => {
-                this.isEdit = !this.isEdit;
-            }, 0);
+            // setTimeout(() => {
+            //     this.isActionEdit = !this.isActionEdit;
+            // }, 0);
         },
         remove() {
             eventBus.$emit('remove', this.id);
@@ -50,7 +50,7 @@ export default {
             eventBus.$emit('changeColor', this.id, color);
         },
         startEdit() {
-            this.isEdit = !this.isEdit;
+            // this.isActionEdit = !this.isActionEdit;
             this.$emit('startEdit');
         },
         mail(){
