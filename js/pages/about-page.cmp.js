@@ -49,8 +49,8 @@ export default{
         <div class="row flex-row-reverse">
           <div class="col-sm-4">
             <div class="team-member">
-              <img class="mx-auto rounded-circle" src="img/1.jpg" alt="">
-              <h4>Roi Levy</h4>
+              <img class="mx-auto rounded-circle" src="img/2.jpg" alt="">
+              <h4>Ori Rose</h4>
               <p>Fullstack WEB Developer</p>
               <ul class="list-inline social-buttons">
                 <li class="list-inline-item">
@@ -69,7 +69,7 @@ export default{
                   </a>
                 </li>
                 <li class="list-inline-item">
-                  <a href="https://github.com/roi1219" target="_blank" title="github">
+                  <a href="https://github.com/OriRose" target="_blank" title="github">
                     <i class="fa fa-github" style="color:black"></i>
                   </a>
                 </li>
@@ -77,11 +77,11 @@ export default{
             </div>
           </div>
           <div class="col-sm-8 flex-align-center">
-            <p class="large about-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut
-              eaque, laboriosam veritatis, quos non quis ad perspiciatis,
-              totam corporis ea, alias ut unde. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut eaque,
-              laboriosam veritatis, quos non quis ad perspiciatis,
-              totam corporis ea, alias ut unde.</p>
+            <p class="large about-description">I'm 25 years old, from Haifa, Israel. I grew up in Rishon
+          Le-Tsion and graduated from Gymnasia HaRealit High School.
+          I studied Medical Science in the Technion Technological Institute for 2 years and later I studied Computer
+          Science in the Open University for 1 year. I'm
+          currently participating in Coding Academy's Coding Bootcamp. I'm hoping I'll become a great programmer soon!</p>
           </div>
         </div>
       </section>

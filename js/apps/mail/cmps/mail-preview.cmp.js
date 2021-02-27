@@ -11,7 +11,7 @@ export default {
                     </div>
                     <div  @click="display(mail.id)" class="mail-preview-other-inner-container">
                         <div class="mail-preview-content" v-bind:class="{bold : isBold}">
-                            {{mail.subject}}&nbsp;&nbsp;&nbsp;&nbsp;{{mail.content}}
+                            {{mail.subject}}&nbsp;&nbsp;&nbsp;&nbsp;<span class="mail-preview-text">{{mail.content}}</span>
                         </div>
                         <div class="mail-preview-content" v-bind:class="{bold : isBold}">
                             {{mail.timestamp}}
