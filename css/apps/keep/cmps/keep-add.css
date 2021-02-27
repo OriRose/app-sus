@@ -21,3 +21,8 @@
 input[type="file"]{
     color: transparent;
 }
+
+button.selected{
+    border-radius: 100%;
+    background-color: rgba(128, 128, 128, 0.521);
+}

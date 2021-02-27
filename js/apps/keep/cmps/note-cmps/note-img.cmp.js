@@ -14,6 +14,7 @@ export default {
                      :color="color"
                      :isPinned="isPinned"
                      :id="id"
+                     :isEdit="isEdit"
                      @edit="edit"
                      @startEdit="startEdit"  
                      >

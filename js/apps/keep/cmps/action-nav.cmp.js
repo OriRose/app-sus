@@ -7,8 +7,8 @@ export default {
                   <button :style="getTextColor" @click="isChangeColor=!isChangeColor" class="fas fa-palette">
                       <nav v-if="isChangeColor">
                           <span @click="changeColor('red')" style="background-color:red">&nbsp;</span>
-                          <span @click="changeColor('blue')" style="background-color:blue">&nbsp;</span>
-                          <span @click="changeColor('green')" style="background-color:green">&nbsp;</span>
+                          <span @click="changeColor('lightblue')" style="background-color:lightblue">&nbsp;</span>
+                          <span @click="changeColor('lightgreen')" style="background-color:lightgreen">&nbsp;</span>
                           <span @click="changeColor('brown')" style="background-color:brown">&nbsp;</span>
                           <span @click="changeColor('orange')" style="background-color:orange">&nbsp;</span>
                           <span @click="changeColor('pink')" style="background-color:pink">&nbsp;</span>
@@ -22,20 +22,20 @@ export default {
                   <button :style="getTextColor" title="delete" @click="remove" class="fas fa-trash"></button>
                 </nav>
     `,
-    props: ["info", "id", "color", "isPinned"],
+    props: ["info", "id", "color", "isPinned","isEdit"],
     data() {
         return {
             isChangeColor: false,
-            isEdit: false,
+            // isActionEdit: this.isEdit,
             txt: this.info.txt
         }
     },
     methods: {
         edit() {
             this.$emit('edit', this.id, this.txt);
-            setTimeout(() => {
-                this.isEdit = !this.isEdit;
-            }, 0);
+            // setTimeout(() => {
+            //     this.isActionEdit = !this.isActionEdit;
+            // }, 0);
         },
         remove() {
             eventBus.$emit('remove', this.id);
@@ -50,7 +50,7 @@ export default {
             eventBus.$emit('changeColor', this.id, color);
         },
         startEdit() {
-            this.isEdit = !this.isEdit;
+            // this.isActionEdit = !this.isActionEdit;
             this.$emit('startEdit');
         },
         mail(){

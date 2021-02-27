@@ -3,11 +3,11 @@ export default {
     <section>
         <h6>Which note would you like to add?</h6>
         <div class="note-type-btn">
-            <button title="reminder" class="fa fa-ellipsis-h" @click="changeCmp('noteTxt')"></button>
-            <button title="todo list" class="fa fa-list-ul" @click="changeCmp('noteTodos')"></button>
-            <button title="image" class="fa fa-image" @click="changeCmp('noteImg')"></button>
-            <button title="video" class="fa fa-video" @click="changeCmp('noteVid')"></button>
-            <button title="audio" class="fa fa-music" @click="changeCmp('noteAud')"></button>
+            <button :class="{selected:cmp.type==='noteTxt'}" title="reminder" class="fa fa-ellipsis-h" @click="changeCmp('noteTxt')"></button>
+            <button :class="{selected:cmp.type==='noteTodos'}" title="todo list" class="fa fa-list-ul" @click="changeCmp('noteTodos')"></button>
+            <button :class="{selected:cmp.type==='noteImg'}" title="image" class="fa fa-image" @click="changeCmp('noteImg')"></button>
+            <button :class="{selected:cmp.type==='noteVid'}" title="video" class="fa fa-video" @click="changeCmp('noteVid')"></button>
+            <button :class="{selected:cmp.type==='noteAud'}" title="audio" class="fa fa-music" @click="changeCmp('noteAud')"></button>
         </div>
         <!-- TODO: FORM -->
         <form @submit.prevent="saveNote">

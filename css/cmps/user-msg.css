@@ -9,9 +9,11 @@
     text-align: center; 
     transition: all .6s;
     border-radius: 10px;
+    z-index: 1;
+    background-color: #fff;
 }
 .user-msg.success{
-    border:20px solid greenyellow;
+    border:10px solid greenyellow;
 }
 .user-msg.error{
     background-color: red;
