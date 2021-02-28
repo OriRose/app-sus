@@ -109,3 +109,27 @@
 .mail-preview-text{
     font-size: 12px;
 }
+
+.mail-compose{
+    position:fixed;
+    background-color: lightseagreen;
+    bottom: 0px;
+    height: 50vh;
+    width: 50vw;
+}
+
+.mail-compose-close-btn{
+    right: 0px;
+}
+
+.mail-compose-form{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 90%;
+}
+
+.mail-compose-form-content{
+    height: 100%;
+    width: 100%;
+}

@@ -4,12 +4,12 @@ import { eventBus } from '../../../services/event-bus.service.js'
 export default {
     props:['mail'],
     template:`
-        <div>
-            <button @click="onClose">X</button>
-            <form>
+        <div class="mail-compose">
+            <button class="mail-compose-close-btn btn-danger" @click="onClose">X</button>
+            <form class="mail-compose-form">
                 <input type="email" placeholder="To..." v-model="recepient">
                 <input type="text" placeholder="Subject" v-model="subject">
-                <input type="text" v-model="content">
+                <input class="mail-compose-form-content" type="text" v-model="content">
                 <button @click="sendMail">Send</button>
             </form>
         </div>
